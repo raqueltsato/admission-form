@@ -12,6 +12,8 @@ import { Status } from "~/core/api/types";
 import { NewUser } from "./types";
 import MaskedField from "~/components/MaskedField";
 import { validateCPF } from "~/utils/cpf";
+import { useState } from "react";
+import Modal from "~/components/Modal";
 
 const validationSchema = z.object({
   employeeName: z
@@ -27,10 +29,14 @@ const validationSchema = z.object({
 });
 
 const NewUserPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const history = useHistory();
+
   const goToHome = () => {
     history.push(routes.dashboard);
   };
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const formOptions: UseFormProps<NewUser> = {
     resolver: zodResolver(validationSchema),
@@ -57,7 +63,7 @@ const NewUserPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <S.Container>
         <S.Card>
           <IconButton onClick={() => goToHome()} aria-label="back">
@@ -122,9 +128,15 @@ const NewUserPage = () => {
             )}
           </S.InputWrapper>
 
-          <Button onClick={() => {}}>Cadastrar</Button>
+          <Button onClick={toggleModal}>Cadastrar</Button>
         </S.Card>
       </S.Container>
+      <Modal
+        title="Cadastrar novo funcionário"
+        onDismiss={toggleModal}
+        isOpen={isModalOpen}
+        action={() => console.log("Send data")}
+      />
     </form>
   );
 };
