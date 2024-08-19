@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { getRegistrations } from "~/core/api/registrations";
-import { Registration } from "./types";
+import { Registration } from "~/core/api/types";
 
 export const useRegistration = () => {
   const [registrations, setRegistrations] = useState<
