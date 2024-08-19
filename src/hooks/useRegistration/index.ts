@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { getRegistrations } from "~/services/registrations";
+import { getRegistrations } from "~/core/api/registrations";
 import { Registration } from "./types";
 
 export const useRegistration = () => {
