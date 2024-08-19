@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { getRegistrations } from "~/services/registrations";
 import { Registration } from "./types";
 
@@ -6,14 +7,17 @@ export const useRegistration = () => {
   const [registrations, setRegistrations] = useState<
     Registration[] | undefined
   >();
-  const fetchRegistrations = async () => {
-    const data = await getRegistrations();
-    setRegistrations(data.data);
-  };
 
-  useEffect(() => {
-    fetchRegistrations();
-  }, []);
+  const {
+    isLoading: isLoadingRegistrations,
+    isError: isErrorFetchRegistrations,
+  } = useQuery({
+    queryKey: ["registrations"],
+    queryFn: () => getRegistrations(),
+    onSuccess: (data) => {
+      setRegistrations(data.data);
+    },
+  });
 
-  return { registrations };
+  return { registrations, isLoadingRegistrations, isErrorFetchRegistrations };
 };
