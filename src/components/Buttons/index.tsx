@@ -10,7 +10,7 @@ const buttonVariant = {
   `,
 };
 
-const Button = styled.button<{ variant?: "primary" | "secondary" }>`
+const Button = styled.button<{ $variant?: "primary" | "secondary" }>`
   outline: none;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@ const Button = styled.button<{ variant?: "primary" | "secondary" }>`
   font-weight: 600;
   min-width: 130px;
   justify-content: center;
-  ${({ variant }) => buttonVariant[variant || "primary"]}
+  ${({ $variant }) => buttonVariant[$variant || "primary"]}
 `;
 
 export const ButtonSmall = styled.button<{
