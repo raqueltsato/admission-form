@@ -22,7 +22,7 @@ const Modal = ({ isOpen = false, onDismiss, title, action }: Prop) => {
         <S.Description>Deseja confirmar a ação?</S.Description>
         <S.ButtonsWrapper>
           <Button onClick={action}>Sim</Button>
-          <Button onClick={onDismiss} variant="secondary">
+          <Button onClick={onDismiss} $variant="secondary">
             Cancelar
           </Button>
         </S.ButtonsWrapper>
