@@ -74,10 +74,6 @@ export const Description = styled.p`
   font-size: 16px;
   line-height: 150%;
   margin-bottom: 32px;
-
-  @media screen (max-width: 768px) {
-    font-size: 14px;
-  }
 `;
 
 export const ButtonsWrapper = styled.div`

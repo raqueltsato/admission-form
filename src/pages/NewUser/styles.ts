@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { _IconButtonStyled } from "~/components/Buttons/IconButton";
 import Button from "~/components/Buttons";
 
@@ -31,6 +31,8 @@ export const Card = styled.div`
 export const InputWrapper = styled.div``;
 
 export const ErrorMessage = styled.p`
-  color: red;
-  font-size: 12px;
+  ${({ theme: { colors, font } }) => css`
+    color: ${colors.red};
+    font-size: ${font.sm};
+  `}
 `;
