@@ -1,6 +1,6 @@
 import { MdClose } from "react-icons/md";
 import * as S from "./styles";
-import Button from "../Buttons";
+import Button from "~/components/Buttons";
 
 type Prop = {
   title: React.ReactNode;

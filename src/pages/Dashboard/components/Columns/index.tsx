@@ -1,11 +1,10 @@
-
 import * as S from "./styles";
-import RegistrationCard from "../RegistrationCard";
+import RegistrationCard from "~/pages/Dashboard/components/RegistrationCard";
 
 const allColumns = [
-  { status: 'REVIEW', title: "Pronto para revisar" },
-  { status: 'APPROVED', title: "Aprovado" },
-  { status: 'REPROVED', title: "Reprovado" },
+  { status: "REVIEW", title: "Pronto para revisar" },
+  { status: "APPROVED", title: "Aprovado" },
+  { status: "REPROVED", title: "Reprovado" },
 ];
 
 type Props = {
