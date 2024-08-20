@@ -14,6 +14,9 @@ import MaskedField from "~/components/MaskedField";
 import { validateCPF } from "~/utils/cpf";
 import { useState } from "react";
 import Modal from "~/components/Modal";
+import { useRegistration } from "~/hooks/useRegistration";
+import { formatDate } from "~/utils/date";
+import { useToast } from "~/hooks/useToast";
 
 const validationSchema = z.object({
   employeeName: z
@@ -31,12 +34,19 @@ const validationSchema = z.object({
 const NewUserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const history = useHistory();
+  const { Toast, handleShowToast } = useToast();
+  const { createRegistrationHook } = useRegistration({ handleShowToast });
 
   const goToHome = () => {
     history.push(routes.dashboard);
   };
 
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
+
+  const handleClickButton = (e: Event) => {
+    e.preventDefault();
+    toggleModal();
+  };
 
   const formOptions: UseFormProps<NewUser> = {
     resolver: zodResolver(validationSchema),
@@ -46,20 +56,28 @@ const NewUserPage = () => {
       admissionDate: "",
       email: "",
       employeeName: "",
-      status: Status.review,
       cpf: "",
+      status: Status.review,
     },
   };
 
   const {
     handleSubmit,
+    register,
+    setValue,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<NewUser>(formOptions);
 
-  const onSubmit = (data) => {
-    console.log("RESULT", data);
-    alert(JSON.stringify(data));
+  const onSubmit = (data: NewUser) => {
+    const params = {
+      ...data,
+      admissionDate: formatDate(data.admissionDate),
+    };
+
+    createRegistrationHook(params);
+    toggleModal();
+    goToHome();
   };
 
   return (
@@ -74,7 +92,12 @@ const NewUserPage = () => {
               name="employeeName"
               control={control}
               render={({ field }) => (
-                <TextField {...field} placeholder="Nome" label="Nome" />
+                <TextField
+                  {...field}
+                  ref={field.ref}
+                  placeholder="Nome"
+                  label="Nome"
+                />
               )}
             />
             {errors.employeeName && (
@@ -88,6 +111,7 @@ const NewUserPage = () => {
               render={({ field }) => (
                 <TextField
                   {...field}
+                  ref={field.ref}
                   placeholder="Email"
                   label="Email"
                   type="email"
@@ -99,18 +123,14 @@ const NewUserPage = () => {
             )}
           </S.InputWrapper>
           <S.InputWrapper>
-            <Controller
-              name="cpf"
-              control={control}
-              render={({ field }) => (
-                <MaskedField
-                  {...field}
-                  placeholder="CPF"
-                  label="CPF"
-                  mask="999.999.999-99"
-                />
-              )}
+            <MaskedField
+              {...register("cpf")}
+              placeholder="CPF"
+              label="CPF"
+              mask="999.999.999-99"
+              onChange={(e) => setValue("cpf", e.target.value)}
             />
+
             {errors.cpf && (
               <S.ErrorMessage>{errors.cpf.message}</S.ErrorMessage>
             )}
@@ -120,22 +140,29 @@ const NewUserPage = () => {
               name="admissionDate"
               control={control}
               render={({ field }) => (
-                <TextField {...field} label="Data de admissão" type="date" />
+                <TextField
+                  {...field}
+                  ref={field.ref}
+                  label="Data de admissão"
+                  type="date"
+                />
               )}
             />
             {errors.admissionDate && (
               <S.ErrorMessage>{errors.admissionDate.message}</S.ErrorMessage>
             )}
           </S.InputWrapper>
-
-          <Button onClick={toggleModal}>Cadastrar</Button>
+          <Button onClick={handleClickButton} disabled={!isValid} type="button">
+            Cadastrar
+          </Button>
         </S.Card>
       </S.Container>
+      <Toast />
       <Modal
         title="Cadastrar novo funcionário"
         onDismiss={toggleModal}
         isOpen={isModalOpen}
-        action={() => console.log("Send data")}
+        action={handleSubmit(onSubmit)}
       />
     </form>
   );
