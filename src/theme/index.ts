@@ -4,6 +4,7 @@ export const Colors = {
   white: "#fff",
   black: "#000",
   green: "#64a98c",
+  gray: "#ccc",
   red: "#ff0000",
   overlay: "#1a203066",
   reviewColorBg: "#FDF8E9",
