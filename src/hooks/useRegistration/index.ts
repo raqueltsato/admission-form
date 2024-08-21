@@ -13,6 +13,8 @@ export const useRegistration = () => {
   const {
     isLoading: isLoadingRegistrations,
     isError: isErrorFetchRegistrations,
+    isRefetching,
+    refetch,
   } = useQuery({
     queryKey: ["registrations"],
     queryFn: () => getRegistrations(),
@@ -43,5 +45,7 @@ export const useRegistration = () => {
     isErrorFetchRegistrations,
     createRegistrationHook,
     isLoadingCreateRegistration,
+    refetch,
+    isRefetching,
   };
 };

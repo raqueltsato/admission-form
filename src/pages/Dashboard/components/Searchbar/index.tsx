@@ -5,20 +5,27 @@ import { IconButton } from "~/components/Buttons/IconButton";
 import TextField from "~/components/TextField";
 import routes from "~/router/routes";
 import * as S from "./styles";
-export const SearchBar = () => {
+import { Props } from "./types";
+import Loading from "~/components/Loading";
+
+export const SearchBar = ({ refetch, isLoading }: Props) => {
   const history = useHistory();
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
   };
-  
+
   return (
     <S.Container>
-      <TextField  placeholder="Digite um CPF válido" />
+      <TextField placeholder="Digite um CPF válido" />
       <S.Actions>
-        <IconButton aria-label="refetch">
-          <HiRefresh />
-        </IconButton>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <IconButton aria-label="refetch" onClick={refetch}>
+            <HiRefresh />
+          </IconButton>
+        )}
         <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
       </S.Actions>
     </S.Container>
