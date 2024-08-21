@@ -1,16 +1,31 @@
+import { Registration, Status } from "~/core/api/types";
 import * as S from "./styles";
 import RegistrationCard from "~/pages/Dashboard/components/RegistrationCard";
 
 const allColumns = [
-  { status: "REVIEW", title: "Pronto para revisar" },
-  { status: "APPROVED", title: "Aprovado" },
-  { status: "REPROVED", title: "Reprovado" },
+  { status: Status.review, title: "Pronto para revisar" },
+  { status: Status.approved, title: "Aprovado" },
+  { status: Status.reproved, title: "Reprovado" },
 ];
 
 type Props = {
-  registrations?: any[];
+  registrations: Registration[];
 };
-const Collumns = (props: Props) => {
+const Collumns = ({ registrations }: Props) => {
+  const registrationsGroupByStatus = registrations.reduce(
+    (accGrouped, registration) => {
+      const structuredGroup = structuredClone(accGrouped);
+
+      structuredGroup[registration.status].push(registration);
+
+      return structuredGroup;
+    },
+    { REVIEW: [], APPROVED: [], REPROVED: [] } as Record<
+      Registration["status"],
+      Registration[]
+    >
+  );
+
   return (
     <S.Container>
       {allColumns.map((collum) => {
@@ -21,15 +36,17 @@ const Collumns = (props: Props) => {
                 {collum.title}
               </S.TitleColumn>
               <S.CollumContent>
-                {props?.registrations?.map((registration) => {
-                  if (registration.status == collum.status)
-                    return (
-                      <RegistrationCard
-                        data={registration}
-                        key={registration.id}
-                      />
-                    );
-                })}
+                {registrationsGroupByStatus[collum.status]?.map(
+                  (registration) => {
+                    if (registration.status == collum.status)
+                      return (
+                        <RegistrationCard
+                          data={registration}
+                          key={registration.id}
+                        />
+                      );
+                  }
+                )}
               </S.CollumContent>
             </>
           </S.Column>

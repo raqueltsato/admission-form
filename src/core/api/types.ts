@@ -1,5 +1,5 @@
 export enum Status {
-  aproved = "APROVED",
+  approved = "APPROVED",
   review = "REVIEW",
   reproved = "REPROVED",
 }

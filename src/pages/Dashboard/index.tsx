@@ -9,7 +9,7 @@ const DashboardPage = () => {
   return (
     <S.Container>
       <SearchBar refetch={refetch} isLoading={isRefetching} />
-      <Collumns registrations={registrations} />
+      <Collumns registrations={registrations || []} />
     </S.Container>
   );
 };
