@@ -25,7 +25,7 @@ export const Wrapper = styled.div<{
   padding: 10px 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  font-size: 14px;
+  font-size: 16px;
   z-index: 9999;
   transition: opacity 0.5s ease;
   border-left: 8px solid red;
@@ -44,7 +44,7 @@ export const CloseWrapper = styled.div`
     padding: 4px;
     width: 1.5rem;
     height: 1.5rem;
-    font-size: 1rem;
+    font-size: 16px;
     color: black;
   }
 

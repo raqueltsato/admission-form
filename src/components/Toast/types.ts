@@ -1,8 +1,8 @@
 export type Variant = "success" | "error";
 
-export type Prop = {
+export type Props = {
   message: string;
-  variant?: Variant;
+  variant: Variant;
   showToast: boolean;
   onClose: () => void;
 };

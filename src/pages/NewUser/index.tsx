@@ -7,7 +7,6 @@ import Button from "~/components/Buttons";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { IconButton } from "~/components/Buttons/IconButton";
 import { useHistory } from "react-router-dom";
-import routes from "~/router/routes";
 import { Status } from "~/core/api/types";
 import { NewUser } from "./types";
 import MaskedField from "~/components/MaskedField";
@@ -16,7 +15,7 @@ import { useState } from "react";
 import Modal from "~/components/Modal";
 import { useRegistration } from "~/hooks/useRegistration";
 import { formatDate } from "~/utils/date";
-import { useToast } from "~/hooks/useToast";
+import routes from "~/router/routes";
 
 const validationSchema = z.object({
   employeeName: z
@@ -34,8 +33,7 @@ const validationSchema = z.object({
 const NewUserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const history = useHistory();
-  const { Toast, handleShowToast } = useToast();
-  const { createRegistrationHook } = useRegistration({ handleShowToast });
+  const { createRegistrationHook } = useRegistration();
 
   const goToHome = () => {
     history.push(routes.dashboard);
@@ -157,7 +155,6 @@ const NewUserPage = () => {
           </Button>
         </S.Card>
       </S.Container>
-      <Toast />
       <Modal
         title="Cadastrar novo funcionário"
         onDismiss={toggleModal}
