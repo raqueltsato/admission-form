@@ -19,4 +19,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           package-manager: yarn
           threshold: 95
-          test-script: "yarn test:coverage"
+          test-script: "yarn test:ci"
