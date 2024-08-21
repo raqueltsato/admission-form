@@ -55,7 +55,6 @@ const NewUserPage = () => {
       email: "",
       employeeName: "",
       cpf: "",
-      status: Status.review,
     },
   };
 
@@ -71,8 +70,8 @@ const NewUserPage = () => {
     const params = {
       ...data,
       admissionDate: formatDate(data.admissionDate),
+      status: Status.review,
     };
-
     createRegistrationHook(params);
     toggleModal();
     goToHome();
@@ -150,7 +149,11 @@ const NewUserPage = () => {
               <S.ErrorMessage>{errors.admissionDate.message}</S.ErrorMessage>
             )}
           </S.InputWrapper>
-          <Button onClick={handleClickButton} disabled={!isValid} type="button">
+          <Button
+            onClick={handleClickButton}
+            $disabled={!isValid}
+            type="button"
+          >
             Cadastrar
           </Button>
         </S.Card>
