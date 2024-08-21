@@ -14,8 +14,8 @@ type Props = {
 };
 
 const RegistrationCard = ({ registration }: Props) => {
-  const { employeeName, email, admissionDate, status } = registration;
-  const { updateRegistrationHook } = useRegistration();
+  const { employeeName, email, admissionDate, status, id } = registration;
+  const { updateRegistrationHook, deleteRegistrationHook } = useRegistration();
 
   const showReviewButton =
     status === Status.approved || status == Status.reproved;
@@ -23,13 +23,14 @@ const RegistrationCard = ({ registration }: Props) => {
   const showActionButton = status === Status.review;
 
   const handleAction = (newStatus: Status) => {
-    console.log("Clcou em reprovar");
     const updatedData = {
       ...registration,
       status: newStatus,
     };
     updateRegistrationHook(updatedData);
   };
+
+  const handleDelete = () => deleteRegistrationHook(id);
 
   return (
     <S.Card>
@@ -70,7 +71,7 @@ const RegistrationCard = ({ registration }: Props) => {
             Revisar novamente
           </ButtonSmall>
         )}
-        <HiOutlineTrash />
+        <HiOutlineTrash onClick={handleDelete} />
       </S.Actions>
     </S.Card>
   );

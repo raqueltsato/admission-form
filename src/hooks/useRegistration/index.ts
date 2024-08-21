@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "react-query";
 import { showToast } from "~/components/Toast";
 import {
   createRegistration,
+  deleteRegistration,
   getRegistrations,
   updateRegistration,
 } from "~/core/api/registrations";
@@ -68,6 +69,26 @@ export const useRegistration = () => {
       }),
   });
 
+  const {
+    mutate: deleteRegistrationHook,
+    isLoading: isLoadingDeleteRegistration,
+  } = useMutation((id: string) => deleteRegistration(id), {
+    onSuccess: () => {
+      refetch();
+      showToast({
+        variant: "success",
+        message: "Registro excluído com sucesso.",
+      });
+    },
+    onError: () => {
+      console.log("onSuccess?");
+      showToast({
+        variant: "error",
+        message: "Erro ao excluir cadastro",
+      });
+    },
+  });
+
   return {
     registrations,
     isLoadingRegistrations,
@@ -78,5 +99,7 @@ export const useRegistration = () => {
     isRefetching,
     updateRegistrationHook,
     isLoadingUpdatingRegistration,
+    deleteRegistrationHook,
+    isLoadingDeleteRegistration,
   };
 };
