@@ -38,13 +38,12 @@ const Collumns = ({ registrations }: Props) => {
               <S.CollumContent>
                 {registrationsGroupByStatus[collum.status]?.map(
                   (registration) => {
-                    if (registration.status == collum.status)
-                      return (
-                        <RegistrationCard
-                          data={registration}
-                          key={registration.id}
-                        />
-                      );
+                    return (
+                      <RegistrationCard
+                        registration={registration}
+                        key={registration.id}
+                      />
+                    );
                   }
                 )}
               </S.CollumContent>

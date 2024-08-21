@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { showToast } from "~/components/Toast";
-import { createRegistration, getRegistrations } from "~/core/api/registrations";
+import {
+  createRegistration,
+  getRegistrations,
+  updateRegistration,
+} from "~/core/api/registrations";
 import { Registration } from "~/core/api/types";
 import { NewUser } from "~/pages/NewUser/types";
 
@@ -21,6 +25,11 @@ export const useRegistration = () => {
     onSuccess: (data) => {
       setRegistrations(data.data);
     },
+    onError: () =>
+      showToast({
+        variant: "error",
+        message: "Erro ao listar registros.",
+      }),
   });
 
   const {
@@ -31,13 +40,31 @@ export const useRegistration = () => {
       refetch();
       showToast({
         variant: "success",
-        message: "Cadastro realizado com sucesso",
+        message: "Cadastro realizado com sucesso.",
       });
     },
     onError: () =>
       showToast({
         variant: "error",
-        message: "Erro ao realizar cadastro",
+        message: "Erro ao realizar cadastro.",
+      }),
+  });
+
+  const {
+    mutate: updateRegistrationHook,
+    isLoading: isLoadingUpdatingRegistration,
+  } = useMutation((data: Registration) => updateRegistration(data.id, data), {
+    onSuccess: () => {
+      refetch();
+      showToast({
+        variant: "success",
+        message: "Registro alterado com sucesso.",
+      });
+    },
+    onError: () =>
+      showToast({
+        variant: "error",
+        message: "Erro ao alterar cadastro",
       }),
   });
 
@@ -49,5 +76,7 @@ export const useRegistration = () => {
     isLoadingCreateRegistration,
     refetch,
     isRefetching,
+    updateRegistrationHook,
+    isLoadingUpdatingRegistration,
   };
 };
