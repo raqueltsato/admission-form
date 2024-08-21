@@ -21,19 +21,24 @@ export const FontSize = {
 } as const;
 
 export const Space = {
+  xxs: "4px",
   xs: "8px",
+  sm2: "12px",
   sm: "16px",
   md: "20px",
   lg: "24px",
   xl: "32px",
+  xxl: "48px",
 } as const;
 
 export const Radius = {
   xs: "2px",
   sm: "4px",
   md: "8px",
-  lg: "32px",
-  xl: "50%",
+  lg: "24px",
+  xl: "32px",
+  xxl: "36px",
+  xxxl: "50%",
 } as const;
 
 declare module "styled-components" {

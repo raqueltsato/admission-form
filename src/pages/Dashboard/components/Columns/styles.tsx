@@ -1,20 +1,22 @@
-import styled from "styled-components";
-const registrationStatusStyles: {
-  [key in string]: { background: string; title: string };
-} = {
+import styled, { DefaultTheme } from "styled-components";
+import theme from "~/theme";
+
+type StatusProps = "REVIEW" | "APPROVED" | "REPROVED";
+
+const registrationStatusStyles = ({ colors }: DefaultTheme) => ({
   REVIEW: {
-    background: "#FDF8E9",
-    title: "#EFC24D",
+    background: colors.reviewColorBg,
+    title: colors.reviewColorTitle,
   },
   APPROVED: {
-    background: "#EEEEFD",
-    title: "#4242DF",
+    background: colors.approvedColorBg,
+    title: colors.approvedColorTitle,
   },
   REPROVED: {
-    background: "#FBEDF6",
-    title: "#CE2893",
+    background: colors.reprovedColorBg,
+    title: colors.reprovedColorTitle,
   },
-};
+});
 
 export const Container = styled.div`
   display: grid;
@@ -24,18 +26,18 @@ export const Container = styled.div`
   margin-top: 24px;
 `;
 
-export const Column = styled.div<{ status: any }>`
+export const Column = styled.div<{ status: StatusProps }>`
   height: auto;
   background-color: ${({ status }) =>
-    registrationStatusStyles[status].background};
+    registrationStatusStyles(theme)[status].background};
   border-radius: 32px;
   min-height: 80vh;
   max-height: 80vh;
 `;
 
-export const TitleColumn = styled.h3<{ status: any }>`
+export const TitleColumn = styled.h3<{ status: StatusProps }>`
   margin: 0px;
-  color: ${({ status }) => registrationStatusStyles[status].title};
+  color: ${({ status }) => registrationStatusStyles(theme)[status].title};
   margin: 24px;
 `;
 

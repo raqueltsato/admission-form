@@ -1,19 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import InputMask from "react-input-mask";
 
 export const Input = styled(InputMask)`
-  padding: 0 8px;
+  ${({ theme: { colors, radius, space, font } }) => css`
+    padding: 0 ${space.xs};
+    border-radius: ${radius.xs};
+    background-color: ${colors.white};
+    font-size: ${font.md};
+    border-radius: ${radius.md};
+  `}
   vertical-align: middle;
-  border-radius: 2px;
   width: 100%;
   min-height: 36px;
-  background-color: #ffffff;
   border: 1px solid rgba(36, 28, 21, 0.3);
   transition: all 0.2s ease-in-out 0s;
-  font-size: 16px;
   line-height: 18px;
   font-weight: normal;
-  border-radius: 8px;
   :focus {
     outline: none;
     border: 1px solid #007c89;

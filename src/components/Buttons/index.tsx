@@ -2,26 +2,32 @@ import styled, { css } from "styled-components";
 
 const buttonVariant = {
   primary: css`
-    background-color: #64a98c;
+    ${({ theme: { colors } }) => css`
+      background-color: ${colors.green};
+    `}
   `,
   secondary: css`
-    border: 1px solid #64a98c;
-    color: #64a98c;
+    ${({ theme: { colors } }) => css`
+      border: 1px solid ${colors.green};
+      color: ${colors.green};
+    `}
   `,
 };
 
 const Button = styled.button<{ $variant?: "primary" | "secondary" }>`
+  ${({ theme: { colors, radius, space, font } }) => css`
+    border-radius: ${radius.xxl};
+    padding: ${space.xs} ${space.xl};
+    color: ${colors.white};
+    font-size: ${font.md};
+  `}
   outline: none;
   display: flex;
   align-items: center;
   border: none;
-  border-radius: 36px;
-  padding: 8px 32px;
   cursor: pointer;
   height: 56px;
-  color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  font-size: 16px;
   font-weight: 600;
   min-width: 130px;
   justify-content: center;
@@ -32,14 +38,16 @@ export const ButtonSmall = styled.button<{
   bgcolor?: string;
   color?: string;
 }>`
-  font-size: 12px;
-  outline: none;
-  border-radius: 4px;
-  border: none;
-  padding: 4px 16px;
-  background-color: ${(props) => props.bgcolor ?? "none"};
-  color: ${(props) => props.color ?? "#000"};
-  cursor: pointer;
+  ${({ theme: { colors, radius, space, font }, bgcolor, color }) => css`
+    font-size: ${font.sm};
+    border-radius: ${radius.sm};
+    padding: ${space.xxs} ${space.sm};
+    background-color: ${bgcolor ?? "transparent"};
+    color: ${color ?? colors.white};
+    cursor: pointer;
+    outline: none;
+    border: none;
+  `}
 `;
 
 export default Button;

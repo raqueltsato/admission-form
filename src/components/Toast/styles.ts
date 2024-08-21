@@ -2,10 +2,14 @@ import styled, { css } from "styled-components";
 
 const toastVariant = {
   success: css`
-    border-left: 8px solid green;
+    ${({ theme: { colors } }) => css`
+      border-left: 8px solid ${colors.green};
+    `}
   `,
   error: css`
-    border-left: 8px solid red;
+    ${({ theme: { colors } }) => css`
+      border-left: 8px solid ${colors.red};
+    `}
   `,
 };
 
@@ -13,43 +17,43 @@ export const Wrapper = styled.div<{
   $showToast: boolean;
   $variant: "success" | "error";
 }>`
-  ${({ $showToast }) => css`
+  ${({ $showToast, theme: { space, colors, font, radius } }) => css`
     opacity: ${$showToast ? 1 : 0};
+    position: fixed;
+    top: 5%;
+    right: 8px;
+    width: 320px;
+    height: 40px;
+    background-color: ${colors.white};
+    padding: ${space.xs} ${space.md};
+    border-radius: ${radius.md};
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: ${font.md};
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+    border-left: 8px solid red;
+    color: ${colors.black};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   `}
-  position: fixed;
-  top: 5%;
-  right: 8px;
-  width: 320px;
-  height: 40px;
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  font-size: 16px;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
-  border-left: 8px solid red;
-  padding: 10px 20px 10px 40px;
-  color: black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   ${({ $variant }) => toastVariant[$variant || "success"]}
 `;
 
 export const CloseWrapper = styled.div`
   cursor: pointer;
+  ${({ theme: { colors, radius, space, font } }) => css`
+    svg {
+      padding: ${space.xxs};
+      width: 24px;
+      height: 24px;
+      font-size: ${font.md};
+      color: ${colors.black};
+    }
 
-  svg {
-    padding: 4px;
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 16px;
-    color: black;
-  }
-
-  :hover {
-    background-color: #64a98c;
-    border-radius: 50%;
-  }
+    :hover {
+      background-color: ${colors.green};
+      border-radius: ${radius.xxxl};
+    }
+  `};
 `;

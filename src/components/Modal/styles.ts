@@ -21,27 +21,31 @@ export const Overlay = styled.div<{ $isOpen: boolean }>`
 `;
 
 export const Content = styled.div`
-  background-color: white;
-  border-radius: 8px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 12px;
-  gap: 20px;
-  z-index: 200;
-  width: 85%;
+  ${({ theme: { colors, radius, space } }) => css`
+    background-color: ${colors.white};
+    border-radius: ${radius.md};
+    padding: ${space.sm2};
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 20px;
+    z-index: 200;
+    width: 85%;
 
-  @media (min-width: 768px) {
-    padding: 20px;
-    width: 500px;
-  }
+    @media (min-width: 768px) {
+      padding: ${space.md};
+      width: 500px;
+    }
+  `}
 `;
 
 export const Header = styled.div`
+  ${({ theme: { space } }) => css`
+    gap: ${space.sm};
+  `}
   display: flex;
   flex-flow: row;
-  gap: 16px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -55,25 +59,28 @@ export const Title = styled.p`
 
 export const CloseWrapper = styled.div`
   cursor: pointer;
+  ${({ theme: { colors, radius, space, font } }) => css`
+    svg {
+      padding: ${space.xxs};
+      width: 24px;
+      height: 24px;
+      font-size: ${font.md};
+      color: ${colors.black};
+    }
 
-  svg {
-    padding: 4px;
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 1rem;
-    color: black;
-  }
-
-  :hover {
-    background-color: #64a98c;
-    border-radius: 50%;
-  }
+    :hover {
+      background-color: ${colors.green};
+      border-radius: ${radius.xxxl};
+    }
+  `}
 `;
 
 export const Description = styled.p`
-  font-size: 16px;
+  ${({ theme: { space, font } }) => css`
+    font-size: ${font.md};
+    margin-bottom: ${space.xl};
+  `}
   line-height: 150%;
-  margin-bottom: 32px;
 `;
 
 export const ButtonsWrapper = styled.div`
