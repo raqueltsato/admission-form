@@ -33,7 +33,7 @@ const validationSchema = z.object({
 const NewUserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const history = useHistory();
-  const { createRegistrationHook } = useRegistration();
+  const { createRegistrationHook, refetch } = useRegistration();
 
   const goToHome = () => {
     history.push(routes.dashboard);
@@ -73,6 +73,7 @@ const NewUserPage = () => {
       status: Status.review,
     };
     createRegistrationHook(params);
+    refetch();
     toggleModal();
     goToHome();
   };

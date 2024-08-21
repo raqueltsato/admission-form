@@ -27,11 +27,13 @@ export const useRegistration = () => {
     mutate: createRegistrationHook,
     isLoading: isLoadingCreateRegistration,
   } = useMutation((data: NewUser) => createRegistration(data), {
-    onSuccess: () =>
+    onSuccess: () => {
+      refetch();
       showToast({
         variant: "success",
         message: "Cadastro realizado com sucesso",
-      }),
+      });
+    },
     onError: () =>
       showToast({
         variant: "error",
