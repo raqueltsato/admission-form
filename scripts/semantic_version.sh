@@ -8,7 +8,7 @@ last_message=$(git_last_message)
 version_mode="patch"
 
 function get_semantic_version {
-    repo="admission_form"
+    repo="admission-form"
 
     response=$(curl -sL \
         -H "Accept: application/vnd.github.v3+json" \
