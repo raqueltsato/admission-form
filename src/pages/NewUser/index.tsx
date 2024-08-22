@@ -3,9 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import TextField from "~/components/TextField";
 import * as S from "./styles";
-import Button from "~/components/Buttons";
+import Button from "~/components/Buttons/Button";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { IconButton } from "~/components/Buttons/IconButton";
 import { useHistory } from "react-router-dom";
 import { Status } from "~/core/api/types";
 import { NewUser } from "./types";
@@ -16,6 +15,7 @@ import Modal from "~/components/Modal";
 import { useRegistration } from "~/hooks/useRegistration";
 import { formatDate } from "~/utils/date";
 import routes from "~/router/routes";
+import IconButton from "~/components/Buttons/IconButton";
 
 const validationSchema = z.object({
   employeeName: z
@@ -41,7 +41,7 @@ const NewUserPage = () => {
 
   const toggleModal = () => setIsModalOpen((prev) => !prev);
 
-  const handleClickButton = (e: Event) => {
+  const handleClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     toggleModal();
   };
@@ -151,11 +151,7 @@ const NewUserPage = () => {
               <S.ErrorMessage>{errors.admissionDate.message}</S.ErrorMessage>
             )}
           </S.InputWrapper>
-          <Button
-            onClick={handleClickButton}
-            $disabled={!isValid}
-            type="button"
-          >
+          <Button onClick={handleClickButton} disabled={!isValid} type="button">
             Cadastrar
           </Button>
         </S.Card>

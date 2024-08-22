@@ -6,7 +6,7 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi";
-import { ButtonSmall } from "~/components/Buttons";
+import Button from "~/components/Buttons/Button";
 import Modal from "~/components/Modal";
 import { Registration, Status } from "~/core/api/types";
 import { useRegistration } from "~/hooks/useRegistration";
@@ -97,27 +97,30 @@ const RegistrationCard = ({ registration }: Props) => {
         <S.Actions>
           {showActionButton && (
             <>
-              <ButtonSmall
+              <Button
                 onClick={() => setCurrentStatus(Status.reproved)}
-                bgcolor="rgb(255, 145, 154)"
+                bgColor="rgb(255, 145, 154)"
+                size="sm"
               >
                 Reprovar
-              </ButtonSmall>
-              <ButtonSmall
+              </Button>
+              <Button
                 onClick={() => setCurrentStatus(Status.approved)}
-                bgcolor="rgb(155, 229, 155)"
+                bgColor="rgb(155, 229, 155)"
+                size="sm"
               >
                 Aprovar
-              </ButtonSmall>
+              </Button>
             </>
           )}
           {showReviewButton && (
-            <ButtonSmall
+            <Button
               onClick={() => setCurrentStatus(Status.review)}
-              bgcolor="#ff8858"
+              bgColor="#ff8858"
+              size="sm"
             >
               Revisar novamente
-            </ButtonSmall>
+            </Button>
           )}
           <HiOutlineTrash onClick={() => setCurrentStatus("delete")} />
         </S.Actions>

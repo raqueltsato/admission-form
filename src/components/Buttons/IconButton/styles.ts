@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const _IconButtonStyled = styled.button`
+export const IconButtonStyled = styled.button`
   ${({ theme: { colors, space, radius } }) => css`
     border: 2px solid ${colors.green};
     padding: ${space.xxs};
@@ -16,11 +16,3 @@ export const _IconButtonStyled = styled.button`
     }
   `}
 `;
-
-type IconButtonProps = {
-  children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLButtonElement>;
-
-export const IconButton = (props: IconButtonProps) => {
-  return <_IconButtonStyled {...props}>{props.children}</_IconButtonStyled>;
-};
