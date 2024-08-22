@@ -2,23 +2,47 @@ import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import Button from "~/components/Buttons";
 import { IconButton } from "~/components/Buttons/IconButton";
-import TextField from "~/components/TextField";
+import MaskedField from "~/components/MaskedField";
 import routes from "~/router/routes";
 import * as S from "./styles";
-export const SearchBar = () => {
+import { Props } from "./types";
+import Loading from "~/components/Loading";
+import { removeCPFMask, validateCPF } from "~/utils/cpf";
+
+export const SearchBar = ({ setCpf, refetch, isLoading }: Props) => {
   const history = useHistory();
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
   };
-  
+
+  const handleFilter = (value: string) => {
+    const isValid = validateCPF(value);
+    if (isValid) {
+      return setCpf(removeCPFMask(value));
+    }
+
+    if (!value) {
+      setCpf(value);
+      return refetch();
+    }
+  };
+
   return (
     <S.Container>
-      <TextField  placeholder="Digite um CPF válido" />
+      <MaskedField
+        mask="999.999.999-99"
+        placeholder="Digite um CPF válido"
+        onChange={(e) => handleFilter(e.target.value)}
+      />
       <S.Actions>
-        <IconButton aria-label="refetch">
-          <HiRefresh />
-        </IconButton>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <IconButton aria-label="refetch" onClick={refetch}>
+            <HiRefresh />
+          </IconButton>
+        )}
         <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
       </S.Actions>
     </S.Container>
