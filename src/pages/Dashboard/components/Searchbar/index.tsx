@@ -7,7 +7,7 @@ import routes from "~/router/routes";
 import * as S from "./styles";
 import { Props } from "./types";
 import Loading from "~/components/Loading";
-import { validateCPF } from "~/utils/cpf";
+import { removeCPFMask, validateCPF } from "~/utils/cpf";
 
 export const SearchBar = ({ setCpf, refetch, isLoading }: Props) => {
   const history = useHistory();
@@ -19,7 +19,7 @@ export const SearchBar = ({ setCpf, refetch, isLoading }: Props) => {
   const handleFilter = (value: string) => {
     const isValid = validateCPF(value);
     if (isValid) {
-      return setCpf(value);
+      return setCpf(removeCPFMask(value));
     }
 
     if (!value) {

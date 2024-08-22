@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 import { Status } from "~/core/api/types";
 import { NewUser } from "./types";
 import MaskedField from "~/components/MaskedField";
-import { validateCPF } from "~/utils/cpf";
+import { removeCPFMask, validateCPF } from "~/utils/cpf";
 import { useState } from "react";
 import Modal from "~/components/Modal";
 import { useRegistration } from "~/hooks/useRegistration";
@@ -71,6 +71,7 @@ const NewUserPage = () => {
       ...data,
       admissionDate: formatDate(data.admissionDate),
       status: Status.review,
+      cpf: removeCPFMask(data.cpf),
     };
     createRegistrationHook(params);
     refetch();
