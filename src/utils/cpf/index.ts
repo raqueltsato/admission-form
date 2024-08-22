@@ -25,3 +25,5 @@ export const validateCPF = (cpf: string) => {
 
   return true;
 };
+
+export const removeCPFMask = (cpf: string) => cpf.replace(/\D/g, "");

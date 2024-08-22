@@ -4,6 +4,7 @@ import { showToast } from "~/components/Toast";
 import {
   createRegistration,
   deleteRegistration,
+  getFilteredRegistration,
   getRegistrations,
   updateRegistration,
 } from "~/core/api/registrations";
@@ -11,9 +12,8 @@ import { Registration } from "~/core/api/types";
 import { NewUser } from "~/pages/NewUser/types";
 
 export const useRegistration = () => {
-  const [registrations, setRegistrations] = useState<
-    Registration[] | undefined
-  >();
+  const [registrations, setRegistrations] = useState<Registration[]>([]);
+  const [cpf, setCpf] = useState<string>("");
 
   const {
     isLoading: isLoadingRegistrations,
@@ -89,6 +89,23 @@ export const useRegistration = () => {
     },
   });
 
+  const {
+    isLoading: isLoadingFilteredRegistration,
+    isError: isErrorFetchFilteredRegistration,
+  } = useQuery({
+    queryKey: ["filteredRegistrations", cpf],
+    queryFn: () => getFilteredRegistration(cpf),
+    enabled: !!cpf,
+    onSuccess: (data) => {
+      setRegistrations(data.data);
+    },
+    onError: () =>
+      showToast({
+        variant: "error",
+        message: "Erro ao buscar registros.",
+      }),
+  });
+
   return {
     registrations,
     isLoadingRegistrations,
@@ -101,5 +118,8 @@ export const useRegistration = () => {
     isLoadingUpdatingRegistration,
     deleteRegistrationHook,
     isLoadingDeleteRegistration,
+    isLoadingFilteredRegistration,
+    isErrorFetchFilteredRegistration,
+    setCpf,
   };
 };

@@ -4,12 +4,17 @@ import { SearchBar } from "./components/Searchbar";
 import { useRegistration } from "~/hooks/useRegistration";
 
 const DashboardPage = () => {
-  const { registrations, refetch, isRefetching } = useRegistration();
+  const {
+    setCpf,
+    registrations,
+    refetch,
+    isRefetching: isLoading,
+  } = useRegistration();
 
   return (
     <S.Container>
-      <SearchBar refetch={refetch} isLoading={isRefetching} />
-      <Collumns registrations={registrations || []} />
+      <SearchBar {...{ setCpf, refetch, isLoading }} />
+      <Collumns registrations={registrations} />
     </S.Container>
   );
 };
