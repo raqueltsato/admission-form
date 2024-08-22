@@ -1,0 +1,37 @@
+name: Semantic Version
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  semantic_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: "Configure git"
+        run: |
+          git config --global user.email ${{ secrets.SEMANTIC_VERSION_GITHUB_EMAIL }}
+          git config --global user.name ${{ secrets.SEMANTIC_VERSION_GITHUB_OWNER_NAME }}
+          git config --global init.defaultBranch main
+
+      - name: Cache Yarn Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Semantic Version
+        run: yarn semantic:version
+
+        env:
+          TO_DO_LIST_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SEMANTIC_VERSION_GITHUB_OWNER: ${{ secrets.SEMANTIC_VERSION_GITHUB_OWNER }}
