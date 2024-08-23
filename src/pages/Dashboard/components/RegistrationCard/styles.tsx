@@ -40,3 +40,16 @@ export const Actions = styled.div`
     cursor: pointer;
   }
 `;
+
+export const DeleteWrapper = styled.div` 
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :hover {
+    ${({ theme: { colors } }) => css`
+      color: ${colors.red};
+    `}
+`;

@@ -122,7 +122,12 @@ const RegistrationCard = ({ registration }: Props) => {
               Revisar novamente
             </Button>
           )}
-          <HiOutlineTrash onClick={() => setCurrentStatus("delete")} />
+          <S.DeleteWrapper>
+            <HiOutlineTrash
+              size={20}
+              onClick={() => setCurrentStatus("delete")}
+            />
+          </S.DeleteWrapper>
         </S.Actions>
       </S.Card>
       <Modal
