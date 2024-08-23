@@ -8,19 +8,9 @@ import {
 } from "react-icons/hi";
 import Button from "~/components/Buttons/Button";
 import Modal from "~/components/Modal";
-import { Registration, Status } from "~/core/api/types";
+import { Status } from "~/core/api/types";
 import { useRegistration } from "~/hooks/useRegistration";
-
-type Props = {
-  registration: Registration;
-};
-
-type ChangeStatusProps = {
-  modalTitle: string;
-  description: string;
-  newStatus: Status | null;
-  action: () => void;
-};
+import { ChangeStatusProps, Props } from "./types";
 
 const RegistrationCard = ({ registration }: Props) => {
   const { employeeName, email, admissionDate, status, id } = registration;
@@ -63,7 +53,13 @@ const RegistrationCard = ({ registration }: Props) => {
         action: () => deleteRegistrationHook(id),
       },
     }[currentStatus || "delete"];
-  }, [currentStatus]);
+  }, [
+    currentStatus,
+    deleteRegistrationHook,
+    id,
+    registration,
+    updateRegistrationHook,
+  ]);
 
   const showConfirmationModal = !!currentStatus;
 

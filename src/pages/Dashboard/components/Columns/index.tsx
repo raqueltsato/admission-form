@@ -1,6 +1,7 @@
 import { Registration, Status } from "~/core/api/types";
 import * as S from "./styles";
 import RegistrationCard from "~/pages/Dashboard/components/RegistrationCard";
+import { Props } from "./types";
 
 const allColumns = [
   { status: Status.review, title: "Pronto para revisar" },
@@ -8,9 +9,6 @@ const allColumns = [
   { status: Status.reproved, title: "Reprovado" },
 ];
 
-type Props = {
-  registrations: Registration[];
-};
 const Collumns = ({ registrations }: Props) => {
   const registrationsGroupByStatus = registrations.reduce(
     (accGrouped, registration) => {

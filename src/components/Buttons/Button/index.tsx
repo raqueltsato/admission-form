@@ -9,13 +9,7 @@ const Button = ({
   ...rest
 }: Props) => {
   return (
-    <S.Button
-      $size={size}
-      $variant={variant}
-      $disabled={disabled}
-      disabled={disabled}
-      {...rest}
-    >
+    <S.Button $size={size} $variant={variant} disabled={disabled} {...rest}>
       {children}
     </S.Button>
   );

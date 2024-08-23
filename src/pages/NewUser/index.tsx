@@ -1,6 +1,5 @@
 import { useForm, Controller, UseFormProps } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import TextField from "~/components/TextField";
 import * as S from "./styles";
 import Button from "~/components/Buttons/Button";
@@ -9,26 +8,14 @@ import { useHistory } from "react-router-dom";
 import { Status } from "~/core/api/types";
 import { NewUser } from "./types";
 import MaskedField from "~/components/MaskedField";
-import { removeCPFMask, validateCPF } from "~/utils/cpf";
+import { removeCPFMask } from "~/utils/cpf";
 import { useState } from "react";
 import Modal from "~/components/Modal";
 import { useRegistration } from "~/hooks/useRegistration";
 import { formatDate } from "~/utils/date";
 import routes from "~/router/routes";
 import IconButton from "~/components/Buttons/IconButton";
-
-const validationSchema = z.object({
-  employeeName: z
-    .string()
-    .min(2, "Digite o nome completo")
-    .regex(/^[a-zA-Z]/, "O nome deve começar com uma letra")
-    .regex(/.*\s+.*/, "O nome deve nome e sobrenome"),
-  email: z.string().email("Adicione um e-mail válido"),
-  cpf: z.string().refine((value) => validateCPF(value), {
-    message: "CPF inválido",
-  }),
-  admissionDate: z.string({ message: "Insira uma data" }),
-});
+import { validationNewUserSchema } from "~/schemas/newUser";
 
 const NewUserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,7 +34,7 @@ const NewUserPage = () => {
   };
 
   const formOptions: UseFormProps<NewUser> = {
-    resolver: zodResolver(validationSchema),
+    resolver: zodResolver(validationNewUserSchema),
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: {

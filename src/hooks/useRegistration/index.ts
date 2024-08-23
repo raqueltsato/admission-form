@@ -81,7 +81,6 @@ export const useRegistration = () => {
       });
     },
     onError: () => {
-      console.log("onSuccess?");
       showToast({
         variant: "error",
         message: "Erro ao excluir cadastro",
