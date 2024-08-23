@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import * as S from "./styles";
 import {
   HiOutlineMail,
@@ -9,12 +9,16 @@ import {
 import Button from "~/components/Buttons/Button";
 import Modal from "~/components/Modal";
 import { Status } from "~/core/api/types";
-import { useRegistration } from "~/hooks/useRegistration";
 import { ChangeStatusProps, Props } from "./types";
+import theme from "~/theme";
+import { RegistrationContext } from "~/context/useRegistrationContext";
 
 const RegistrationCard = ({ registration }: Props) => {
+  const {
+    actions: { deleteRegistrationHook, updateRegistrationHook },
+  } = useContext(RegistrationContext);
+
   const { employeeName, email, admissionDate, status, id } = registration;
-  const { updateRegistrationHook, deleteRegistrationHook } = useRegistration();
   const [currentStatus, setCurrentStatus] = useState<Status | "delete" | null>(
     null
   );
@@ -95,14 +99,14 @@ const RegistrationCard = ({ registration }: Props) => {
             <>
               <Button
                 onClick={() => setCurrentStatus(Status.reproved)}
-                bgColor="rgb(255, 145, 154)"
+                $bgColor={theme.colors.lightestRed}
                 size="sm"
               >
                 Reprovar
               </Button>
               <Button
                 onClick={() => setCurrentStatus(Status.approved)}
-                bgColor="rgb(155, 229, 155)"
+                $bgColor={theme.colors.lightestGreen}
                 size="sm"
               >
                 Aprovar
@@ -112,13 +116,18 @@ const RegistrationCard = ({ registration }: Props) => {
           {showReviewButton && (
             <Button
               onClick={() => setCurrentStatus(Status.review)}
-              bgColor="#ff8858"
+              $bgColor={theme.colors.orange}
               size="sm"
             >
               Revisar novamente
             </Button>
           )}
-          <HiOutlineTrash onClick={() => setCurrentStatus("delete")} />
+          <S.DeleteWrapper>
+            <HiOutlineTrash
+              size={20}
+              onClick={() => setCurrentStatus("delete")}
+            />
+          </S.DeleteWrapper>
         </S.Actions>
       </S.Card>
       <Modal

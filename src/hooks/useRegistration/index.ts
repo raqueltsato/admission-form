@@ -10,8 +10,9 @@ import {
 } from "~/core/api/registrations";
 import { Registration } from "~/core/api/types";
 import { NewUser } from "~/pages/NewUser/types";
+import { RegistrationsReturnProps } from "./types";
 
-export const useRegistration = () => {
+export const useRegistration = (): RegistrationsReturnProps => {
   const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [cpf, setCpf] = useState<string>("");
 
@@ -106,19 +107,23 @@ export const useRegistration = () => {
   });
 
   return {
-    registrations,
-    isLoadingRegistrations,
-    isErrorFetchRegistrations,
-    createRegistrationHook,
-    isLoadingCreateRegistration,
-    refetch,
-    isRefetching,
-    updateRegistrationHook,
-    isLoadingUpdatingRegistration,
-    deleteRegistrationHook,
-    isLoadingDeleteRegistration,
-    isLoadingFilteredRegistration,
-    isErrorFetchFilteredRegistration,
-    setCpf,
+    actions: {
+      createRegistrationHook,
+      refetch,
+      updateRegistrationHook,
+      deleteRegistrationHook,
+      setCpf,
+    },
+    values: {
+      registrations,
+      isLoadingRegistrations,
+      isErrorFetchRegistrations,
+      isLoadingCreateRegistration,
+      isRefetching,
+      isLoadingUpdatingRegistration,
+      isLoadingDeleteRegistration,
+      isLoadingFilteredRegistration,
+      isErrorFetchFilteredRegistration,
+    },
   };
 };

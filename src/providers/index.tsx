@@ -3,15 +3,18 @@ import QueryProvider from "./QueryProvider";
 import { Props } from "./types";
 import Toast from "~/components/Toast";
 import Router from "~/router";
+import { RegistrationsProvider } from "~/context/useRegistrationContext";
 
 const GlobalProvider = ({ children }: Props): JSX.Element => {
   return (
     <StylesProvider>
       <QueryProvider>
-        {children}
-        <Router />
+        <RegistrationsProvider>
+          {children}
+          <Router />
+          <Toast />
+        </RegistrationsProvider>
       </QueryProvider>
-      <Toast />
     </StylesProvider>
   );
 };

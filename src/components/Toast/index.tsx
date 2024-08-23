@@ -1,7 +1,8 @@
 import { createPortal } from "react-dom";
 import * as S from "./styles";
 import { Props, Variant } from "./types";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdCheckCircleOutline } from "react-icons/md";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useEffect, useState } from "react";
 
 let showToastAction: ({
@@ -23,6 +24,16 @@ const Toast = () => {
     setShowToast(true);
   };
 
+  const renderIcon = () => (
+    <S.IconWrapper $variant={variant}>
+      {variant === "success" ? (
+        <MdCheckCircleOutline size={20} />
+      ) : (
+        <AiOutlineCloseCircle size={20} />
+      )}
+    </S.IconWrapper>
+  );
+
   useEffect(() => {
     showToastAction = handleShowToast;
   }, []);
@@ -33,8 +44,9 @@ const Toast = () => {
 
   return createPortal(
     <S.Wrapper $showToast={showToast} $variant={variant}>
+      {renderIcon()}
       {message}
-      <S.CloseWrapper onClick={() => setShowToast((prev) => !prev)}>
+      <S.CloseWrapper onClick={() => setShowToast((prev) => !prev)} size={20}>
         <MdClose aria-label="Fechar modal" />
       </S.CloseWrapper>
     </S.Wrapper>,

@@ -2,7 +2,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "~/theme";
 import { Props } from "../types";
 
-const StylesProvider: React.FC<Props> = ({ children }): JSX.Element => (
+const StylesProvider = ({ children }: Props) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 

@@ -1,7 +1,10 @@
 import { Registration, Status } from "~/core/api/types";
+import { HiOutlineUsers } from "react-icons/hi";
 import * as S from "./styles";
 import RegistrationCard from "~/pages/Dashboard/components/RegistrationCard";
-import { Props } from "./types";
+import CardSkeleton from "../RegistrationCard/CardSkeleton";
+import { RegistrationContext } from "~/context/useRegistrationContext";
+import { useContext } from "react";
 
 const allColumns = [
   { status: Status.review, title: "Pronto para revisar" },
@@ -9,7 +12,11 @@ const allColumns = [
   { status: Status.reproved, title: "Reprovado" },
 ];
 
-const Collumns = ({ registrations }: Props) => {
+const Collumns = () => {
+  const {
+    values: { registrations, isRefetching },
+  } = useContext(RegistrationContext);
+
   const registrationsGroupByStatus = registrations.reduce(
     (accGrouped, registration) => {
       const structuredGroup = structuredClone(accGrouped);
@@ -24,29 +31,39 @@ const Collumns = ({ registrations }: Props) => {
     >
   );
 
+  const renderContent = (status: Status) => {
+    if (isRefetching) {
+      return (
+        <>
+          <CardSkeleton />
+          <CardSkeleton />
+        </>
+      );
+    }
+
+    return registrationsGroupByStatus[status]?.map((registration) => {
+      return (
+        <RegistrationCard registration={registration} key={registration.id} />
+      );
+    });
+  };
+
   return (
     <S.Container>
-      {allColumns.map((collum) => {
+      {allColumns.map((column) => {
         return (
-          <S.Column status={collum.status} key={collum.title}>
-            <>
-              <S.TitleColumn status={collum.status}>
-                {collum.title}
-              </S.TitleColumn>
-              <S.CollumContent>
-                {registrationsGroupByStatus[collum.status]?.map(
-                  (registration) => {
-                    return (
-                      <RegistrationCard
-                        registration={registration}
-                        key={registration.id}
-                      />
-                    );
-                  }
-                )}
-              </S.CollumContent>
-            </>
-          </S.Column>
+          <S.ColumnContainer key={column.title}>
+            <S.ColumnTitleContainer status={column.status}>
+              <S.Title status={column.status}>{column.title}</S.Title>
+              <S.UsersCount status={column.status}>
+                <HiOutlineUsers size={16} />
+                {registrationsGroupByStatus[column.status].length}
+              </S.UsersCount>
+            </S.ColumnTitleContainer>
+            <S.Column status={column.status} key={column.title}>
+              {renderContent(column.status)}
+            </S.Column>
+          </S.ColumnContainer>
         );
       })}
     </S.Container>

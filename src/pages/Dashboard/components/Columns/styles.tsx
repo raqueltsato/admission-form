@@ -22,26 +22,51 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 24px;
-  justify-content: center;
   margin-top: 24px;
+  width: 100%;
+  overflow: auto;
+`;
+
+export const ColumnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ColumnTitleContainer = styled.div<{ status: StatusProps }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${({ status }) =>
+    registrationStatusStyles(theme)[status].background};
+  margin: ${theme.space.xs} 0;
+  border-radius: ${theme.radius.md};
+  border: 1px solid
+    ${({ status }) => registrationStatusStyles(theme)[status].title};
+`;
+
+export const UsersCount = styled.div<{ status: StatusProps }>`
+  display: flex;
+  gap: ${theme.space.xs};
+  margin-right: ${theme.space.lg};
+  align-items: center;
+  color: ${theme.colors.lightestBlack};
+  font-size: ${theme.font.md};
 `;
 
 export const Column = styled.div<{ status: StatusProps }>`
   height: auto;
   background-color: ${({ status }) =>
     registrationStatusStyles(theme)[status].background};
-  border-radius: 32px;
+  border: 1px solid
+    ${({ status }) => registrationStatusStyles(theme)[status].title};
+  border-radius: ${theme.radius.md};
   min-height: 80vh;
   max-height: 80vh;
+  overflow: auto;
 `;
 
-export const TitleColumn = styled.h3<{ status: StatusProps }>`
+export const Title = styled.h3<{ status: StatusProps }>`
   margin: 0px;
   color: ${({ status }) => registrationStatusStyles(theme)[status].title};
   margin: 24px;
-`;
-
-export const CollumContent = styled.div`
-  overflow: auto;
-  max-height: 85%;
 `;

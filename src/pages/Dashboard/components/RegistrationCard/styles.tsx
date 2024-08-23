@@ -10,14 +10,14 @@ export const Card = styled.div`
     border-radius: ${space.xs};
     padding: ${space.sm};
     background-color: ${colors.white};
+    color: ${colors.black};
+    min-width: 200px;
   `}
   h3,
   p {
     margin: 0;
   }
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 4px 16px #0003;
 `;
 
 export const IconAndText = styled.div`
@@ -40,4 +40,17 @@ export const Actions = styled.div`
   svg {
     cursor: pointer;
   }
+`;
+
+export const DeleteWrapper = styled.div` 
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :hover {
+    ${({ theme: { colors } }) => css`
+      color: ${colors.red};
+    `}
 `;
