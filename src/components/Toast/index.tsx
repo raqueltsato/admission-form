@@ -34,8 +34,6 @@ const Toast = () => {
     </S.IconWrapper>
   );
 
-  console.log(variant);
-
   useEffect(() => {
     showToastAction = handleShowToast;
   }, []);

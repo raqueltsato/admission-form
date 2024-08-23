@@ -24,19 +24,19 @@ const buttonVariant = ({
 
 const buttonSize = ({
   theme: { font, radius, space, colors },
-  bgColor,
+  $bgColor,
   color,
 }: {
   theme: DefaultTheme;
   disabled?: boolean;
-  bgColor: string;
+  $bgColor: string;
   color: string;
 }) => ({
   sm: css`
     font-size: ${font.sm};
     border-radius: ${radius.sm};
     padding: ${space.sm2} ${space.lg};
-    background-color: ${bgColor || "transparent"};
+    background-color: ${$bgColor || "transparent"};
     color: ${color || colors.white};
     cursor: pointer;
     outline: none;
@@ -60,15 +60,15 @@ const buttonSize = ({
 export const Button = styled.button<{
   $variant?: "primary" | "secondary";
   disabled?: boolean;
-  bgColor: string;
+  $bgColor: string;
   color: string;
   $size: "sm" | "md";
 }>`
   ${({ theme, $variant, disabled }) =>
     buttonVariant({ colors: theme.colors, disabled })[$variant || "primary"]}
 
-  ${({ theme, $size, disabled, bgColor, color }) =>
-    buttonSize({ theme: theme, disabled, bgColor, color })[$size]}
+  ${({ theme, $size, disabled, $bgColor, color }) =>
+    buttonSize({ theme: theme, disabled, $bgColor, color })[$size]}
   
   ${({ disabled }) => css`
     cursor: ${disabled ? "not-allowed" : "pointer"};
