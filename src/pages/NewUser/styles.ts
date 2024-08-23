@@ -33,10 +33,3 @@ export const Card = styled.div`
 `;
 
 export const InputWrapper = styled.div``;
-
-export const ErrorMessage = styled.p`
-  ${({ theme: { colors, font } }) => css`
-    color: ${colors.red};
-    font-size: ${font.sm};
-  `}
-`;

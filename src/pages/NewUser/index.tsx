@@ -96,12 +96,10 @@ const NewUserPage = () => {
                   ref={field.ref}
                   placeholder="Nome"
                   label="Nome"
+                  error={errors.employeeName?.message}
                 />
               )}
             />
-            {errors.employeeName && (
-              <S.ErrorMessage>{errors.employeeName.message}</S.ErrorMessage>
-            )}
           </S.InputWrapper>
           <S.InputWrapper>
             <Controller
@@ -114,12 +112,10 @@ const NewUserPage = () => {
                   placeholder="Email"
                   label="Email"
                   type="email"
+                  error={errors.email?.message}
                 />
               )}
             />
-            {errors.email && (
-              <S.ErrorMessage>{errors.email.message}</S.ErrorMessage>
-            )}
           </S.InputWrapper>
           <S.InputWrapper>
             <MaskedField
@@ -128,11 +124,8 @@ const NewUserPage = () => {
               label="CPF"
               mask="999.999.999-99"
               onChange={(e) => setValue("cpf", e.target.value)}
+              error={errors.cpf?.message}
             />
-
-            {errors.cpf && (
-              <S.ErrorMessage>{errors.cpf.message}</S.ErrorMessage>
-            )}
           </S.InputWrapper>
           <S.InputWrapper>
             <Controller
@@ -144,12 +137,10 @@ const NewUserPage = () => {
                   ref={field.ref}
                   label="Data de admissão"
                   type="date"
+                  error={errors.admissionDate?.message}
                 />
               )}
             />
-            {errors.admissionDate && (
-              <S.ErrorMessage>{errors.admissionDate.message}</S.ErrorMessage>
-            )}
           </S.InputWrapper>
           <Button onClick={handleClickButton} disabled={!isValid} type="button">
             Cadastrar

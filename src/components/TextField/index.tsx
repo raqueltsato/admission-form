@@ -1,40 +1,17 @@
-import { forwardRef, InputHTMLAttributes } from "react";
-import styled, { css } from "styled-components";
+import { forwardRef } from "react";
+import * as S from "./styles";
+import { Props } from "./types";
 
-export const Input = styled.input`
-  ${({ theme: { colors, radius, space, font } }) => css`
-    padding: 0 ${space.xs};
-    border-radius: ${radius.xs};
-    vertical-align: middle;
-    width: 100%;
-    min-height: 36px;
-    background-color: ${colors.white};
-    border: 1px solid rgba(36, 28, 21, 0.3);
-    transition: all 0.2s ease-in-out 0s;
-    font-size: ${font.md};
-    line-height: 18px;
-    font-weight: normal;
-    border-radius: ${radius.md};
-    :focus {
-      outline: none;
-      border: 1px solid #007c89;
-      box-shadow: inset 0 0 0 1px #007c89;
-    }
-  `}
-`;
-type Props = {
-  label?: string;
-  error?: string;
-} & InputHTMLAttributes<any>;
-
-const TextField = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
-  return (
-    <div>
-      <label>{props.label}</label>
-      <Input ref={ref} {...props} />
-      <span style={{ fontSize: 12, color: "red" }}>{props.error}</span>
-    </div>
-  );
-});
+const TextField = forwardRef<HTMLInputElement, Props>(
+  ({ label, error, ...rest }: Props, ref) => {
+    return (
+      <div>
+        <label>{label}</label>
+        <S.Input ref={ref} {...rest} />
+        <S.Error>{error}</S.Error>
+      </div>
+    );
+  }
+);
 
 export default TextField;
