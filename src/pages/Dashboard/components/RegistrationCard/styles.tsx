@@ -11,6 +11,7 @@ export const Card = styled.div`
     padding: ${space.sm};
     background-color: ${colors.white};
     color: ${colors.black};
+    min-width: 200px;
   `}
   h3,
   p {
