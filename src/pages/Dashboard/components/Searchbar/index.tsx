@@ -1,13 +1,13 @@
 import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
-import Button from "~/components/Buttons";
-import { IconButton } from "~/components/Buttons/IconButton";
+import Button from "~/components/Buttons/Button";
 import MaskedField from "~/components/MaskedField";
 import routes from "~/router/routes";
 import * as S from "./styles";
 import { Props } from "./types";
 import Loading from "~/components/Loading";
 import { removeCPFMask, validateCPF } from "~/utils/cpf";
+import IconButton from "~/components/Buttons/IconButton";
 
 export const SearchBar = ({ setCpf, refetch, isLoading }: Props) => {
   const history = useHistory();

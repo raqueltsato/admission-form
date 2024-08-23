@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import { _IconButtonStyled } from "~/components/Buttons/IconButton";
-import Button from "~/components/Buttons";
+import { Button } from "~/components/Buttons/Button/styles";
+import { IconButtonStyled } from "~/components/Buttons/IconButton/styles";
 
 export const Container = styled.div`
   ${({ theme: { space } }) => css`
@@ -21,7 +21,7 @@ export const Card = styled.div`
     flex-direction: column;
     gap: ${space.sm};
 
-    ${_IconButtonStyled} {
+    ${IconButtonStyled} {
       margin-bottom: ${space.xs};
       align-items: flex-start;
     }
@@ -33,10 +33,3 @@ export const Card = styled.div`
 `;
 
 export const InputWrapper = styled.div``;
-
-export const ErrorMessage = styled.p`
-  ${({ theme: { colors, font } }) => css`
-    color: ${colors.red};
-    font-size: ${font.sm};
-  `}
-`;

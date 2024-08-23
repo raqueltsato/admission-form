@@ -1,24 +1,8 @@
-import styled, { css } from "styled-components";
+import * as S from "./styles";
+import { Props } from "./types";
 
-export const Header = styled.header`
-  ${({ theme: { colors, space, font } }) => css`
-    background: rgb(255, 117, 0);
-    background: linear-gradient(
-      258deg,
-      rgba(255, 117, 0, 1) 8%,
-      rgba(232, 5, 55, 1) 53%
-    );
-    width: 100%;
-    height: 64px;
-    position: fixed;
-    top: 0;
-    display: flex;
-    align-items: center;
-    padding: 0px ${space.lg};
+const Header = ({ children }: Props) => {
+  return <S.Wrapper>{children}</S.Wrapper>;
+};
 
-    h1 {
-      color: ${colors.white};
-      font-size: ${font.lg};
-    }
-  `}
-`;
+export default Header;

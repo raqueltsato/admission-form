@@ -21,7 +21,7 @@ export const Wrapper = styled.div<{
     opacity: ${$showToast ? 1 : 0};
     position: fixed;
     top: 5%;
-    right: 8px;
+    right: ${space.xs};
     width: 320px;
     height: 40px;
     background-color: ${colors.white};
@@ -31,7 +31,7 @@ export const Wrapper = styled.div<{
     font-size: ${font.md};
     z-index: 9999;
     transition: opacity 0.5s ease;
-    border-left: 8px solid red;
+    border-left: 8px solid ${colors.red};
     color: ${colors.black};
     display: flex;
     justify-content: space-between;

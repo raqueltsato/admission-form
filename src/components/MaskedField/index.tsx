@@ -1,12 +1,6 @@
-import { Props as InputMaskProps } from "react-input-mask";
-
 import * as S from "./styles";
 import { forwardRef } from "react";
-
-type Props = {
-  label?: string;
-  error?: string;
-} & InputMaskProps;
+import { Props } from "./types";
 
 const MaskedField = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
   return (

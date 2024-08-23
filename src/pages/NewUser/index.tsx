@@ -1,34 +1,21 @@
 import { useForm, Controller, UseFormProps } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import TextField from "~/components/TextField";
 import * as S from "./styles";
-import Button from "~/components/Buttons";
+import Button from "~/components/Buttons/Button";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { IconButton } from "~/components/Buttons/IconButton";
 import { useHistory } from "react-router-dom";
 import { Status } from "~/core/api/types";
 import { NewUser } from "./types";
 import MaskedField from "~/components/MaskedField";
-import { removeCPFMask, validateCPF } from "~/utils/cpf";
+import { removeCPFMask } from "~/utils/cpf";
 import { useState } from "react";
 import Modal from "~/components/Modal";
 import { useRegistration } from "~/hooks/useRegistration";
 import { formatDate } from "~/utils/date";
 import routes from "~/router/routes";
-
-const validationSchema = z.object({
-  employeeName: z
-    .string()
-    .min(2, "Digite o nome completo")
-    .regex(/^[a-zA-Z]/, "O nome deve começar com uma letra")
-    .regex(/.*\s+.*/, "O nome deve nome e sobrenome"),
-  email: z.string().email("Adicione um e-mail válido"),
-  cpf: z.string().refine((value) => validateCPF(value), {
-    message: "CPF inválido",
-  }),
-  admissionDate: z.string({ message: "Insira uma data" }),
-});
+import IconButton from "~/components/Buttons/IconButton";
+import { validationNewUserSchema } from "~/schemas/newUser";
 
 const NewUserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,13 +28,13 @@ const NewUserPage = () => {
 
   const toggleModal = () => setIsModalOpen((prev) => !prev);
 
-  const handleClickButton = (e: Event) => {
+  const handleClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     toggleModal();
   };
 
   const formOptions: UseFormProps<NewUser> = {
-    resolver: zodResolver(validationSchema),
+    resolver: zodResolver(validationNewUserSchema),
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: {
@@ -96,12 +83,10 @@ const NewUserPage = () => {
                   ref={field.ref}
                   placeholder="Nome"
                   label="Nome"
+                  error={errors.employeeName?.message}
                 />
               )}
             />
-            {errors.employeeName && (
-              <S.ErrorMessage>{errors.employeeName.message}</S.ErrorMessage>
-            )}
           </S.InputWrapper>
           <S.InputWrapper>
             <Controller
@@ -114,12 +99,10 @@ const NewUserPage = () => {
                   placeholder="Email"
                   label="Email"
                   type="email"
+                  error={errors.email?.message}
                 />
               )}
             />
-            {errors.email && (
-              <S.ErrorMessage>{errors.email.message}</S.ErrorMessage>
-            )}
           </S.InputWrapper>
           <S.InputWrapper>
             <MaskedField
@@ -128,11 +111,8 @@ const NewUserPage = () => {
               label="CPF"
               mask="999.999.999-99"
               onChange={(e) => setValue("cpf", e.target.value)}
+              error={errors.cpf?.message}
             />
-
-            {errors.cpf && (
-              <S.ErrorMessage>{errors.cpf.message}</S.ErrorMessage>
-            )}
           </S.InputWrapper>
           <S.InputWrapper>
             <Controller
@@ -144,18 +124,12 @@ const NewUserPage = () => {
                   ref={field.ref}
                   label="Data de admissão"
                   type="date"
+                  error={errors.admissionDate?.message}
                 />
               )}
             />
-            {errors.admissionDate && (
-              <S.ErrorMessage>{errors.admissionDate.message}</S.ErrorMessage>
-            )}
           </S.InputWrapper>
-          <Button
-            onClick={handleClickButton}
-            $disabled={!isValid}
-            type="button"
-          >
+          <Button onClick={handleClickButton} disabled={!isValid} type="button">
             Cadastrar
           </Button>
         </S.Card>

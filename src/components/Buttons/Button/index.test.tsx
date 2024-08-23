@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import Button from ".";
+import Button from "./";
 import { render, screen } from "@testing-library/react";
 import theme from "~/theme";
 
