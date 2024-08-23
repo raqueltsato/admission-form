@@ -9,18 +9,21 @@ import { Status } from "~/core/api/types";
 import { NewUser } from "./types";
 import MaskedField from "~/components/MaskedField";
 import { removeCPFMask } from "~/utils/cpf";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "~/components/Modal";
-import { useRegistration } from "~/hooks/useRegistration";
 import { formatDate } from "~/utils/date";
 import routes from "~/router/routes";
 import IconButton from "~/components/Buttons/IconButton";
 import { validationNewUserSchema } from "~/schemas/newUser";
+import { RegistrationContext } from "~/context/useRegistrationContext";
 
 const NewUserPage = () => {
+  const {
+    actions: { createRegistrationHook, refetch },
+  } = useContext(RegistrationContext);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const history = useHistory();
-  const { createRegistrationHook, refetch } = useRegistration();
 
   const goToHome = () => {
     history.push(routes.dashboard);

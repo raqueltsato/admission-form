@@ -4,12 +4,18 @@ import Button from "~/components/Buttons/Button";
 import MaskedField from "~/components/MaskedField";
 import routes from "~/router/routes";
 import * as S from "./styles";
-import { Props } from "./types";
 import Loading from "~/components/Loading";
 import { removeCPFMask, validateCPF } from "~/utils/cpf";
 import IconButton from "~/components/Buttons/IconButton";
+import { useContext } from "react";
+import { RegistrationContext } from "~/context/useRegistrationContext";
 
-export const SearchBar = ({ setCpf, refetch, isLoading }: Props) => {
+export const SearchBar = () => {
+  const {
+    actions: { setCpf, refetch },
+    values: { isRefetching },
+  } = useContext(RegistrationContext);
+
   const history = useHistory();
 
   const goToNewAdmissionPage = () => {
@@ -38,7 +44,7 @@ export const SearchBar = ({ setCpf, refetch, isLoading }: Props) => {
         }
       />
       <S.Actions>
-        {isLoading ? (
+        {isRefetching ? (
           <Loading />
         ) : (
           <IconButton aria-label="refetch" onClick={refetch}>

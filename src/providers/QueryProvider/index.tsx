@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Props } from "../types";
 
-const QueryProvider: React.FC<Props> = ({ children }): JSX.Element => {
+const QueryProvider = ({ children }: Props): JSX.Element => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
