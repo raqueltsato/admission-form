@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 const toastVariant = {
   success: css`
     ${({ theme: { colors } }) => css`
-      border-left: 8px solid ${colors.green};
+      border-left: 8px solid ${colors.lightestGreen};
     `}
   `,
   error: css`
@@ -40,13 +40,17 @@ export const Wrapper = styled.div<{
   ${({ $variant }) => toastVariant[$variant || "success"]}
 `;
 
+export const IconWrapper = styled.div<{ $variant: "success" | "error" }>`
+  ${({ theme: { colors }, $variant }) => css`
+    color: ${$variant === "success" ? colors.lightestGreen : colors.red};
+  `}
+`;
+
 export const CloseWrapper = styled.div`
   cursor: pointer;
   ${({ theme: { colors, radius, space, font } }) => css`
     svg {
       padding: ${space.xxs};
-      width: 24px;
-      height: 24px;
       font-size: ${font.md};
       color: ${colors.black};
     }

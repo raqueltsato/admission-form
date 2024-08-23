@@ -2,10 +2,15 @@ import { DefaultTheme } from "styled-components";
 
 export const Colors = {
   white: "#fff",
-  black: "#000",
+  black: "#252525",
+  lightestBlack: "#323232",
   green: "#64a98c",
+  lightestGreen: "#1d8e6a",
   gray: "#ccc",
-  red: "#ff0000",
+  red: "#e80537",
+  lightestRed: "#e86269",
+  orange: "#ff7500",
+  lightestOrange: "#ffbd83",
   overlay: "#1a203066",
   reviewColorBg: "#FDF8E9",
   approvedColorBg: "#EEEEFD",

@@ -35,7 +35,7 @@ const buttonSize = ({
   sm: css`
     font-size: ${font.sm};
     border-radius: ${radius.sm};
-    padding: ${space.xxs} ${space.sm};
+    padding: ${space.sm2} ${space.lg};
     background-color: ${bgColor || "transparent"};
     color: ${color || colors.white};
     cursor: pointer;

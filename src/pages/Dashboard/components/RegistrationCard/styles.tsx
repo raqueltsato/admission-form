@@ -10,14 +10,13 @@ export const Card = styled.div`
     border-radius: ${space.xs};
     padding: ${space.sm};
     background-color: ${colors.white};
+    color: ${colors.black};
   `}
   h3,
   p {
     margin: 0;
   }
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 4px 16px #0003;
 `;
 
 export const IconAndText = styled.div`

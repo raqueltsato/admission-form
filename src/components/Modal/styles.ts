@@ -31,11 +31,11 @@ export const Content = styled.div`
     transform: translate(-50%, -50%);
     gap: 20px;
     z-index: 200;
-    width: 85%;
+    width: 90%;
 
     @media (min-width: 768px) {
       padding: ${space.md};
-      width: 500px;
+      width: 350px;
     }
   `}
 `;
@@ -51,6 +51,9 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.p`
+  ${({ theme: { colors } }) => css`
+    color: ${colors.red};
+  `}
   display: flex;
   justify-content: space-between;
   font-size: 18px;
