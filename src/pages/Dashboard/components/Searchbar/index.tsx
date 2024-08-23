@@ -33,7 +33,9 @@ export const SearchBar = ({ setCpf, refetch, isLoading }: Props) => {
       <MaskedField
         mask="999.999.999-99"
         placeholder="Digite um CPF válido"
-        onChange={(e) => handleFilter(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleFilter(e.target.value)
+        }
       />
       <S.Actions>
         {isLoading ? (

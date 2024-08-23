@@ -110,7 +110,9 @@ const NewUserPage = () => {
               placeholder="CPF"
               label="CPF"
               mask="999.999.999-99"
-              onChange={(e) => setValue("cpf", e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setValue("cpf", e.target.value)
+              }
               error={errors.cpf?.message}
             />
           </S.InputWrapper>
