@@ -1,6 +1,8 @@
-import { Props as InputMaskProps } from "react-input-mask";
+import React from "react";
+
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 export type Props = {
   label?: string;
   error?: string;
-} & InputMaskProps;
+} & InputProps;

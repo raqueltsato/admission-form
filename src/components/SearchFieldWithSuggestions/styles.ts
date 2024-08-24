@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
-import InputMask from "react-input-mask";
 
-export const Input = styled(InputMask)`
+export const Input = styled.input`
   ${({ theme: { colors, radius, space, font } }) => css`
     padding: 0 ${space.xs};
     border-radius: ${radius.xs};
@@ -33,8 +32,8 @@ export const Error = styled.span`
 export const SuggestionsList = styled.ul`
   ${({ theme: { colors, space, radius } }) => css`
     background-color: ${colors.white};
-    max-height: 200px;
-    overflow-y: auto;
+    max-height: 210px;
+    overflow-y: scroll;
     margin-top: ${space.xxs};
     padding: 0;
     list-style: none;
@@ -48,7 +47,7 @@ export const SuggestionsList = styled.ul`
 
 export const SuggestionItem = styled.li`
   ${({ theme: { colors, space, radius } }) => css`
-    padding: ${space.sm2};
+    padding: ${space.xs} ${space.sm2};
     border-radius: ${radius.sm};
     &:hover {
       background-color: ${colors.hover};

@@ -112,7 +112,6 @@ const NewUserPage = () => {
               {...register("cpf")}
               placeholder="CPF"
               label="CPF"
-              mask="999.999.999-99"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setValue("cpf", e.target.value)
               }

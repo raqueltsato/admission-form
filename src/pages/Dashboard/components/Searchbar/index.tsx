@@ -23,10 +23,7 @@ export const SearchBar = () => {
 
   return (
     <S.Container>
-      <SearchFieldWithSuggestions
-        mask="999.999.999-99"
-        placeholder="Digite um CPF válido"
-      />
+      <SearchFieldWithSuggestions placeholder="Digite um CPF válido" />
       <S.Actions>
         {isRefetching ? (
           <Loading />

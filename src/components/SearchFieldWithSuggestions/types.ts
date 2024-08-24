@@ -1,5 +1,5 @@
-import { Props as InputMaskProps } from "react-input-mask";
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 export type Props = {
   label?: string;
-} & InputMaskProps;
+} & InputProps;

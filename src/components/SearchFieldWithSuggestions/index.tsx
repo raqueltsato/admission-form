@@ -13,10 +13,9 @@ import { Registration } from "~/core/api/types";
 import { HiOutlineUser } from "react-icons/hi";
 import { BsCardHeading } from "react-icons/bs";
 import { RegistrationContext } from "~/context/useRegistrationContext";
-import { ReactInputMask } from "react-input-mask";
 
-const SearchFieldWithSuggestions = forwardRef<ReactInputMask, Props>(
-  ({ label, mask, ...rest }: Props, ref) => {
+const SearchFieldWithSuggestions = forwardRef<HTMLInputElement, Props>(
+  ({ label, ...rest }: Props, ref) => {
     const [filteredSuggestions, setFilteredSuggestions] = useState<
       Registration[]
     >([]);
@@ -82,9 +81,9 @@ const SearchFieldWithSuggestions = forwardRef<ReactInputMask, Props>(
         <label>{label}</label>
         <S.Input
           ref={ref}
-          mask={mask}
-          value={inputValue}
+          value={addCPFMask(inputValue)}
           onChange={handleChange}
+          maxLength={14}
           {...rest}
         />
         {showError && <S.Error>CPF inválido</S.Error>}
