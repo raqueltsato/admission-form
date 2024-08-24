@@ -1,8 +1,9 @@
 import { forwardRef } from "react";
 import * as S from "./styles";
 import { Props } from "./types";
+import { ReactInputMask } from "react-input-mask";
 
-const MaskedField = forwardRef<HTMLInputElement, Props>(
+const MaskedField = forwardRef<ReactInputMask, Props>(
   ({ label, error, ...rest }: Props, ref) => {
     return (
       <div>

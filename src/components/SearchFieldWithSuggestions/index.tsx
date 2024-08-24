@@ -13,8 +13,9 @@ import { Registration } from "~/core/api/types";
 import { HiOutlineUser } from "react-icons/hi";
 import { BsCardHeading } from "react-icons/bs";
 import { RegistrationContext } from "~/context/useRegistrationContext";
+import { ReactInputMask } from "react-input-mask";
 
-const SearchFieldWithSuggestions = forwardRef<HTMLInputElement, Props>(
+const SearchFieldWithSuggestions = forwardRef<ReactInputMask, Props>(
   ({ label, mask, ...rest }: Props, ref) => {
     const [filteredSuggestions, setFilteredSuggestions] = useState<
       Registration[]

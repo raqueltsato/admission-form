@@ -12,7 +12,7 @@ const Modal = ({
 }: Props) => {
   return (
     <S.Overlay onClick={onDismiss} $isOpen={isOpen}>
-      <S.Content onClick={(e: Event) => e.stopPropagation()}>
+      <S.Content onClick={(e) => e.stopPropagation()}>
         <S.Header>
           <S.Title>{title}</S.Title>
           <S.CloseWrapper>

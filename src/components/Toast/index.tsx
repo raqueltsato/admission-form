@@ -46,7 +46,7 @@ const Toast = () => {
     <S.Wrapper $showToast={showToast} $variant={variant}>
       {renderIcon()}
       {message}
-      <S.CloseWrapper onClick={() => setShowToast((prev) => !prev)} size={20}>
+      <S.CloseWrapper onClick={() => setShowToast((prev) => !prev)}>
         <MdClose aria-label="Fechar modal" />
       </S.CloseWrapper>
     </S.Wrapper>,
