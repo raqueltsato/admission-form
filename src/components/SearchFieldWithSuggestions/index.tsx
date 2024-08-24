@@ -35,8 +35,6 @@ const SearchFieldWithSuggestions = forwardRef<HTMLInputElement, Props>(
       [!!registrations.length]
     );
 
-    console.log(!!registrations.length);
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = removeCPFMask(e.target.value);
 

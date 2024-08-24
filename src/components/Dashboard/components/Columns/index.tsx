@@ -1,10 +1,10 @@
-import { Registration, Status } from "~/core/api/types";
-import { HiOutlineUsers } from "react-icons/hi";
-import * as S from "./styles";
-import RegistrationCard from "~/pages/Dashboard/components/RegistrationCard";
-import CardSkeleton from "../RegistrationCard/CardSkeleton";
-import { RegistrationContext } from "~/context/useRegistrationContext";
 import { useContext } from "react";
+import { HiOutlineUsers } from "react-icons/hi";
+import RegistrationCard from "../RegistrationCard";
+import CardSkeleton from "../RegistrationCard/CardSkeleton";
+import { Registration, Status } from "~/core/api/types";
+import { RegistrationContext } from "~/context/useRegistrationContext";
+import * as S from "./styles";
 
 const allColumns = [
   { status: Status.review, title: "Pronto para revisar" },
