@@ -12,6 +12,7 @@ const MaskedField = forwardRef<HTMLInputElement, Props>(
           ref={ref}
           value={addCPFMask(value as string)}
           maxLength={14}
+          data-testid="input-masked"
           {...rest}
         />
         <S.Error>{error}</S.Error>
