@@ -50,7 +50,6 @@ const NewUserPage = () => {
 
   const {
     handleSubmit,
-    register,
     setValue,
     control,
     formState: { errors, isValid },
@@ -108,14 +107,21 @@ const NewUserPage = () => {
             />
           </S.InputWrapper>
           <S.InputWrapper>
-            <MaskedField
-              {...register("cpf")}
-              placeholder="CPF"
-              label="CPF"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setValue("cpf", e.target.value)
-              }
-              error={errors.cpf?.message}
+            <Controller
+              name="cpf"
+              control={control}
+              render={({ field }) => (
+                <MaskedField
+                  {...field}
+                  ref={field.ref}
+                  placeholder="CPF"
+                  label="CPF"
+                  error={errors.email?.message}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setValue("cpf", e.target.value)
+                  }
+                />
+              )}
             />
           </S.InputWrapper>
           <S.InputWrapper>
