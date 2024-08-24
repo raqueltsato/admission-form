@@ -50,7 +50,6 @@ const NewUserPage = () => {
 
   const {
     handleSubmit,
-    setValue,
     control,
     formState: { errors, isValid },
   } = useForm<NewUser>(formOptions);
@@ -99,8 +98,8 @@ const NewUserPage = () => {
                 <TextField
                   {...field}
                   ref={field.ref}
-                  placeholder="Email"
-                  label="Email"
+                  placeholder="E-mail"
+                  label="E-mail"
                   type="email"
                   error={errors.email?.message}
                 />
@@ -117,10 +116,7 @@ const NewUserPage = () => {
                   ref={field.ref}
                   placeholder="CPF"
                   label="CPF"
-                  error={errors.email?.message}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setValue("cpf", e.target.value)
-                  }
+                  error={errors.cpf?.message}
                 />
               )}
             />
@@ -136,11 +132,17 @@ const NewUserPage = () => {
                   label="Data de admissão"
                   type="date"
                   error={errors.admissionDate?.message}
+                  data-testid="date"
                 />
               )}
             />
           </S.InputWrapper>
-          <Button onClick={handleClickButton} disabled={!isValid} type="button">
+          <Button
+            onClick={handleClickButton}
+            data-testid="register-button"
+            disabled={!isValid}
+            type="button"
+          >
             Cadastrar
           </Button>
         </S.Card>
