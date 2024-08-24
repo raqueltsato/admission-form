@@ -55,7 +55,10 @@ const Collumns = () => {
           <S.ColumnContainer key={column.title}>
             <S.ColumnTitleContainer status={column.status}>
               <S.Title status={column.status}>{column.title}</S.Title>
-              <S.UsersCount status={column.status}>
+              <S.UsersCount
+                status={column.status}
+                data-testid={`status-${column.status}`}
+              >
                 <HiOutlineUsers size={16} />
                 {registrationsGroupByStatus[column.status].length}
               </S.UsersCount>

@@ -1,3 +1,5 @@
+import { Registration } from "~/core/api/types";
+
 export const registrationsMock = [
   {
     admissionDate: "10/05/2023",
@@ -31,4 +33,4 @@ export const registrationsMock = [
     cpf: "58215863051",
     id: "6",
   },
-];
+] as Registration[];
