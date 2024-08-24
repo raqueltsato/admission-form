@@ -1,9 +1,10 @@
 import * as S from "./styles";
+import { Props } from "./types";
 
-const Header = () => {
+const Header = ({ title }: Props) => {
   return (
     <S.Wrapper>
-      <h1>Caju Front Teste</h1>
+      <h1>{title}</h1>
     </S.Wrapper>
   );
 };

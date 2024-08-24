@@ -29,8 +29,8 @@ const buttonSize = ({
 }: {
   theme: DefaultTheme;
   disabled?: boolean;
-  $bgColor: string;
-  color: string;
+  $bgColor?: string;
+  color?: string;
 }) => ({
   sm: css`
     font-size: ${font.sm};
@@ -60,8 +60,8 @@ const buttonSize = ({
 export const Button = styled.button<{
   $variant?: "primary" | "secondary";
   disabled?: boolean;
-  $bgColor: string;
-  color: string;
+  $bgColor?: string;
+  color?: string;
   $size: "sm" | "md";
 }>`
   ${({ theme, $variant, disabled }) =>

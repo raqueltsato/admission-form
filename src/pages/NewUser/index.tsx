@@ -50,8 +50,6 @@ const NewUserPage = () => {
 
   const {
     handleSubmit,
-    register,
-    setValue,
     control,
     formState: { errors, isValid },
   } = useForm<NewUser>(formOptions);
@@ -73,6 +71,7 @@ const NewUserPage = () => {
     <form>
       <S.Container>
         <S.Card>
+          <S.Title>Cadastro de funcionário</S.Title>
           <IconButton onClick={() => goToHome()} aria-label="back">
             <HiOutlineArrowLeft size={24} />
           </IconButton>
@@ -99,8 +98,8 @@ const NewUserPage = () => {
                 <TextField
                   {...field}
                   ref={field.ref}
-                  placeholder="Email"
-                  label="Email"
+                  placeholder="E-mail"
+                  label="E-mail"
                   type="email"
                   error={errors.email?.message}
                 />
@@ -108,15 +107,18 @@ const NewUserPage = () => {
             />
           </S.InputWrapper>
           <S.InputWrapper>
-            <MaskedField
-              {...register("cpf")}
-              placeholder="CPF"
-              label="CPF"
-              mask="999.999.999-99"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setValue("cpf", e.target.value)
-              }
-              error={errors.cpf?.message}
+            <Controller
+              name="cpf"
+              control={control}
+              render={({ field }) => (
+                <MaskedField
+                  {...field}
+                  ref={field.ref}
+                  placeholder="CPF"
+                  label="CPF"
+                  error={errors.cpf?.message}
+                />
+              )}
             />
           </S.InputWrapper>
           <S.InputWrapper>
@@ -130,11 +132,17 @@ const NewUserPage = () => {
                   label="Data de admissão"
                   type="date"
                   error={errors.admissionDate?.message}
+                  data-testid="date"
                 />
               )}
             />
           </S.InputWrapper>
-          <Button onClick={handleClickButton} disabled={!isValid} type="button">
+          <Button
+            onClick={handleClickButton}
+            data-testid="register-button"
+            disabled={!isValid}
+            type="button"
+          >
             Cadastrar
           </Button>
         </S.Card>

@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import { Button } from "~/components/Buttons/Button/styles";
 import { IconButtonStyled } from "~/components/Buttons/IconButton/styles";
 
+export const Title = styled.h2``;
+
 export const Container = styled.div`
   ${({ theme: { space } }) => css`
     gap: ${space.sm};
@@ -13,8 +15,10 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-  ${({ theme: { space } }) => css`
-    border: 2px solid #f0f0f0;
+  ${({ theme: { space, radius } }) => css`
+    margin-top: ${space.xxl};
+    box-shadow: 0px 4px 16px #0003;
+    border-radius: ${radius.sm};
     width: 500px;
     padding: ${space.xxl};
     display: flex;

@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
-import InputMask from "react-input-mask";
 
-export const Input = styled(InputMask)`
+export const Input = styled.input`
   ${({ theme: { colors, radius, space, font } }) => css`
     padding: 0 ${space.xs};
     border-radius: ${radius.xs};

@@ -43,10 +43,17 @@ const Toast = () => {
   }, [showToast]);
 
   return createPortal(
-    <S.Wrapper $showToast={showToast} $variant={variant}>
+    <S.Wrapper
+      $showToast={showToast}
+      $variant={variant}
+      data-testid="toast-wrapper"
+    >
       {renderIcon()}
       {message}
-      <S.CloseWrapper onClick={() => setShowToast((prev) => !prev)} size={20}>
+      <S.CloseWrapper
+        onClick={() => setShowToast((prev) => !prev)}
+        data-testid="close-toast"
+      >
         <MdClose aria-label="Fechar modal" />
       </S.CloseWrapper>
     </S.Wrapper>,

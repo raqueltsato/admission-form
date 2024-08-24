@@ -57,7 +57,11 @@ export const useRegistration = (): RegistrationsReturnProps => {
     isLoading: isLoadingUpdatingRegistration,
   } = useMutation((data: Registration) => updateRegistration(data.id, data), {
     onSuccess: () => {
-      refetch();
+      if (cpf) {
+        refetchFilter();
+      } else {
+        refetch();
+      }
       showToast({
         variant: "success",
         message: "Registro alterado com sucesso.",
@@ -92,6 +96,7 @@ export const useRegistration = (): RegistrationsReturnProps => {
   const {
     isLoading: isLoadingFilteredRegistration,
     isError: isErrorFetchFilteredRegistration,
+    refetch: refetchFilter,
   } = useQuery({
     queryKey: ["filteredRegistrations", cpf],
     queryFn: () => getFilteredRegistration(cpf),

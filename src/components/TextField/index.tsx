@@ -7,8 +7,8 @@ const TextField = forwardRef<HTMLInputElement, Props>(
     return (
       <div>
         <label>{label}</label>
-        <S.Input ref={ref} {...rest} />
-        <S.Error>{error}</S.Error>
+        <S.Input data-testid="text-field" ref={ref} {...rest} />
+        <S.Error data-testid={`${label}-error`}>{error}</S.Error>
       </div>
     );
   }

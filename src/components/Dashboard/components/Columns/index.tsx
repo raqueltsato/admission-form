@@ -1,10 +1,10 @@
-import { Registration, Status } from "~/core/api/types";
-import { HiOutlineUsers } from "react-icons/hi";
-import * as S from "./styles";
-import RegistrationCard from "~/pages/Dashboard/components/RegistrationCard";
-import CardSkeleton from "../RegistrationCard/CardSkeleton";
-import { RegistrationContext } from "~/context/useRegistrationContext";
 import { useContext } from "react";
+import { HiOutlineUsers } from "react-icons/hi";
+import RegistrationCard from "../RegistrationCard";
+import CardSkeleton from "../RegistrationCard/CardSkeleton";
+import { Registration, Status } from "~/core/api/types";
+import { RegistrationContext } from "~/context/useRegistrationContext";
+import * as S from "./styles";
 
 const allColumns = [
   { status: Status.review, title: "Pronto para revisar" },
@@ -55,7 +55,10 @@ const Collumns = () => {
           <S.ColumnContainer key={column.title}>
             <S.ColumnTitleContainer status={column.status}>
               <S.Title status={column.status}>{column.title}</S.Title>
-              <S.UsersCount status={column.status}>
+              <S.UsersCount
+                status={column.status}
+                data-testid={`status-${column.status}`}
+              >
                 <HiOutlineUsers size={16} />
                 {registrationsGroupByStatus[column.status].length}
               </S.UsersCount>

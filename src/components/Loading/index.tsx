@@ -3,7 +3,7 @@ import * as S from "./styles";
 const Loading = () => {
   return (
     <S.LoaderContainer>
-      <S.Loader />
+      <S.Loader title="Carregando" />
     </S.LoaderContainer>
   );
 };

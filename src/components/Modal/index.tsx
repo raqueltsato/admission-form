@@ -11,20 +11,31 @@ const Modal = ({
   action,
 }: Props) => {
   return (
-    <S.Overlay onClick={onDismiss} $isOpen={isOpen}>
-      <S.Content onClick={(e: Event) => e.stopPropagation()}>
+    <S.Overlay onClick={onDismiss} $isOpen={isOpen} data-testid="modal-overlay">
+      <S.Content onClick={(e) => e.stopPropagation()}>
         <S.Header>
           <S.Title>{title}</S.Title>
           <S.CloseWrapper>
-            <MdClose aria-label="Fechar modal" onClick={onDismiss} />
+            <MdClose
+              aria-label="Fechar modal"
+              onClick={onDismiss}
+              data-testid="close-modal"
+            />
           </S.CloseWrapper>
         </S.Header>
         <S.Description>
           {description || "Deseja confirmar a ação?"}
         </S.Description>
         <S.ButtonsWrapper>
-          <Button onClick={action}>Sim</Button>
-          <Button onClick={onDismiss} variant="secondary" type="button">
+          <Button onClick={action} data-testid="modal-confirm-button">
+            Sim
+          </Button>
+          <Button
+            onClick={onDismiss}
+            variant="secondary"
+            type="button"
+            data-testid="modal-cancel-button"
+          >
             Cancelar
           </Button>
         </S.ButtonsWrapper>

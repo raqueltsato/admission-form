@@ -1,15 +1,15 @@
 import { ThemeProvider } from "styled-components";
-import Button from "./";
+import Loading from "./";
 import { render, screen } from "@testing-library/react";
 import theme from "~/theme";
 
-describe("Button", () => {
-  it("Should show button", () => {
+describe("Loading", () => {
+  it("Should show Loading", () => {
     render(
       <ThemeProvider theme={theme}>
-        <Button>Ativar</Button>
+        <Loading />
       </ThemeProvider>
     );
-    expect(screen.getByRole("button", { name: /ativar/i })).toBeDefined();
+    expect(screen.getByTitle(/carregando/i)).toBeDefined();
   });
 });

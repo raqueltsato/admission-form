@@ -81,7 +81,7 @@ const RegistrationCard = ({ registration }: Props) => {
 
   return (
     <>
-      <S.Card>
+      <S.Card data-testid="registration-card">
         <S.IconAndText>
           <HiOutlineUser />
           <h3>{employeeName}</h3>
@@ -101,6 +101,7 @@ const RegistrationCard = ({ registration }: Props) => {
                 onClick={() => setCurrentStatus(Status.reproved)}
                 $bgColor={theme.colors.lightestRed}
                 size="sm"
+                data-testid="reprove-button"
               >
                 Reprovar
               </Button>
@@ -108,6 +109,7 @@ const RegistrationCard = ({ registration }: Props) => {
                 onClick={() => setCurrentStatus(Status.approved)}
                 $bgColor={theme.colors.lightestGreen}
                 size="sm"
+                data-testid="approve-button"
               >
                 Aprovar
               </Button>
@@ -118,12 +120,14 @@ const RegistrationCard = ({ registration }: Props) => {
               onClick={() => setCurrentStatus(Status.review)}
               $bgColor={theme.colors.orange}
               size="sm"
+              data-testid="review-button"
             >
               Revisar novamente
             </Button>
           )}
           <S.DeleteWrapper>
             <HiOutlineTrash
+              data-testid="delete-button"
               size={20}
               onClick={() => setCurrentStatus("delete")}
             />
@@ -136,6 +140,7 @@ const RegistrationCard = ({ registration }: Props) => {
         onDismiss={handleDismissModal}
         isOpen={showConfirmationModal}
         action={handleConfirmAction}
+        data-testid="card-modal"
       />
     </>
   );

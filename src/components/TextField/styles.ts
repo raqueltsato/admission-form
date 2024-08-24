@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Input = styled.input`
   ${({ theme: { colors, radius, space, font } }) => css`
+    margin-top: ${space.xxs};
     padding: 0 ${space.xs};
     border-radius: ${radius.xs};
     vertical-align: middle;

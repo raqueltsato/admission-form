@@ -1,15 +1,15 @@
 import { ThemeProvider } from "styled-components";
-import Button from "./";
+import Header from "./";
 import { render, screen } from "@testing-library/react";
 import theme from "~/theme";
 
-describe("Button", () => {
-  it("Should show button", () => {
+describe("Header", () => {
+  it("Should show Header", () => {
     render(
       <ThemeProvider theme={theme}>
-        <Button>Ativar</Button>
+        <Header title="Caju Front Teste" />
       </ThemeProvider>
     );
-    expect(screen.getByRole("button", { name: /ativar/i })).toBeDefined();
+    expect(screen.getByText(/caju front teste/i)).toBeDefined();
   });
 });
