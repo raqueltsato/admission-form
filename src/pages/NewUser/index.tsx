@@ -72,6 +72,7 @@ const NewUserPage = () => {
     <form>
       <S.Container>
         <S.Card>
+          <S.Title>Cadastro de funcionário</S.Title>
           <IconButton onClick={() => goToHome()} aria-label="back">
             <HiOutlineArrowLeft size={24} />
           </IconButton>
