@@ -4,7 +4,7 @@ import GlobalProvider from "./providers";
 function App() {
   return (
     <GlobalProvider>
-      <Header />
+      <Header title="Caju Front Teste" />
     </GlobalProvider>
   );
 }
