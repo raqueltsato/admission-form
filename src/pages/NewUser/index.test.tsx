@@ -58,6 +58,7 @@ describe("NewUser", () => {
     const registerButton = screen.getByTestId("register-button");
 
     expect(registerButton).toBeDefined();
+
     fireEvent.click(registerButton);
     const confirmButton = screen.getByTestId("modal-confirm-button");
 
@@ -72,5 +73,36 @@ describe("NewUser", () => {
       status: "REVIEW",
       cpf: "41648756077",
     });
+  });
+
+  it("Should throw errors in new registration form", async () => {
+    render(
+      <Router history={createBrowserHistory()}>
+        <GlobalProvider>
+          <Wrapper />
+        </GlobalProvider>
+      </Router>
+    );
+
+    const name = screen.getByPlaceholderText("Nome");
+    const email = screen.getByPlaceholderText("E-mail");
+    const cpf = screen.getByPlaceholderText("CPF");
+    const date = screen.getByTestId("date");
+
+    expect(name).toBeDefined();
+    expect(email).toBeDefined();
+    expect(cpf).toBeDefined();
+    expect(date).toBeDefined();
+
+    fireEvent.change(name, { target: { value: "Ana" } });
+    fireEvent.change(email, { target: { value: "ana@email.com" } });
+    fireEvent.change(cpf, { target: { value: "11111111111" } });
+    fireEvent.change(date, { target: { value: "2024-01-01" } });
+
+    expect(screen.getByText("Cadastrar novo funcionário")).toBeDefined();
+
+    const registerButton = screen.getByTestId("register-button");
+
+    expect(registerButton).toBeDisabled();
   });
 });
