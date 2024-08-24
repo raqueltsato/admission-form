@@ -10,6 +10,6 @@ describe("Header", () => {
         <Header />
       </ThemeProvider>
     );
-    expect(screen.getByText(/caju front teste/i));
+    expect(screen.getByText(/caju front teste/i)).toBeDefined();
   });
 });

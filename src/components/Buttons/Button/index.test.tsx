@@ -10,6 +10,6 @@ describe("Button", () => {
         <Button>Ativar</Button>
       </ThemeProvider>
     );
-    expect(screen.getByRole("button", { name: /ativar/i }));
+    expect(screen.getByRole("button", { name: /ativar/i })).toBeDefined();
   });
 });

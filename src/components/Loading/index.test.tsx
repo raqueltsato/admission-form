@@ -10,6 +10,6 @@ describe("Loading", () => {
         <Loading />
       </ThemeProvider>
     );
-    expect(screen.getByTitle(/carregando/i));
+    expect(screen.getByTitle(/carregando/i)).toBeDefined();
   });
 });
