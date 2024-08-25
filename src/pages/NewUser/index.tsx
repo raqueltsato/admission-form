@@ -16,6 +16,7 @@ import routes from "~/router/routes";
 import IconButton from "~/components/Buttons/IconButton";
 import { validationNewUserSchema } from "~/schemas/newUser";
 import { RegistrationContext } from "~/context/useRegistrationContext";
+import { format } from "date-fns";
 
 const NewUserPage = () => {
   const {
@@ -36,12 +37,14 @@ const NewUserPage = () => {
     toggleModal();
   };
 
+  const today = format(new Date(), "yyyy-MM-dd");
+
   const formOptions: UseFormProps<NewUser> = {
     resolver: zodResolver(validationNewUserSchema),
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: {
-      admissionDate: "",
+      admissionDate: today,
       email: "",
       employeeName: "",
       cpf: "",
@@ -72,9 +75,12 @@ const NewUserPage = () => {
       <S.Container>
         <S.Card>
           <S.Title>Cadastro de funcionário</S.Title>
-          <IconButton onClick={() => goToHome()} aria-label="back">
-            <HiOutlineArrowLeft size={24} />
-          </IconButton>
+          <IconButton
+            onClick={() => goToHome()}
+            aria-label="Voltar"
+            iconName={HiOutlineArrowLeft}
+            size={24}
+          />
           <S.InputWrapper>
             <Controller
               name="employeeName"
