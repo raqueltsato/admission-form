@@ -11,6 +11,8 @@ export const IconButtonStyled = styled.button`
     align-items: center;
     justify-content: center;
     background-color: transparent;
+    height: 100%;
+
     svg {
       color: ${colors.green};
     }

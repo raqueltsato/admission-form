@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     margin: ${space.sm};
     border-radius: ${space.xs};
     position: relative;
-    height: 250px;
+    height: 150px;
     min-width: 250px;
   `}
 `;

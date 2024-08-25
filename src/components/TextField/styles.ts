@@ -7,6 +7,7 @@ export const Input = styled.input`
     border-radius: ${radius.xs};
     vertical-align: middle;
     width: 100%;
+    max-width: 100%;
     min-height: 36px;
     background-color: ${colors.white};
     border: 1px solid rgba(36, 28, 21, 0.3);
@@ -15,6 +16,8 @@ export const Input = styled.input`
     line-height: 18px;
     font-weight: normal;
     border-radius: ${radius.md};
+    box-sizing: border-box;
+
     :focus {
       outline: none;
       border: 1px solid #007c89;
