@@ -1,129 +1,76 @@
-
 # Caju Front End Teste
 
-Esse é um teste para você demonstrar suas experiencia como front end, a aplicação basicamente se divide em duas telas, o `Dashboard` e um `Formulário`.
-Voce deverá criar uma plataforma de admissão que permita o usuario adicionar uma admissão com as opções de aprovar, reprovar ou excluir.
+Você pode clicar [aqui](https://admission-form-seven.vercel.app/#/dashboard) para acessar a página do projeto
 
-O `Dashboard` mostra todas as admissões criadas, com as opções de Aprovar, reprovar, e excluir.
+O `Dashboard` mostra todas as admissões criadas, com as opções de Aprovar, Reprovar, e Excluir.
+Além disso, é possível filtrar um cadastro através do CPF, exibindo uma lista de sugestões para que o usuário possa selecionar um registro
 
-![Screenshot 2024-06-11 at 11 48 24 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/fedeff5c-a0d3-4df1-aebd-1f2d25c56a48)
+O `Formulario` exibe um formulário que será utilizado para preencher o dashboard com os dados com as seguintes validações:
 
-Dashboard com os cards. (Utilize o componente `RegistrationCard`)
+- Nome completo deve possuir ao menos um espaço, no mínimo duas letras e a primeira letra não deve ser número.
+- O e-mail deve ser válido.
+- Ao realizar o cadastro com sucesso, o usuário é redirecionado para o `Dashboard`
 
-![Screenshot 2024-06-11 at 1 52 35 PM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/3b002341-454b-4b24-82cb-6390656b56cc)
+## Como rodar o projeto localmente
 
-O `Formulario` exibe um formulário simples que será utilizado para preencher o dashboard com os dados.
+Clone o repositório e instale as dependências.
 
-![Screenshot 2024-06-11 at 11 48 47 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/bbbb211c-165f-40e5-b2af-61adafd61398)
-
-## Apresentanção do problema
-
-O desafio é melhorar a organização do projeto, refatorar o código e implementar algumas regras e novas funcionalidades(logo abaixo).
-Sinta-se a vontade para criar novas pastas, novos utils, contextos, custom hooks, o que achar melhor para deixar o projeto mais organizado e atigir as especificações abaixo.
-
-
-## Especificações
-
-### Dashboard
-  
-- Implementar `GET` ao carregar a pagina e ao fazer pequisa por `CPF`
-- Filtrar os cards por coluna, usando o status.
-- Implementar `PUT` ao clicar em Reprovar e alterar o status para `REPROVED`
-- Implementar `PUT` ao clicar em Aprovar e alterar o status para `APPROVED`
-- Implementar `PUT` ao clicar em Revisar novamente e alterar o status para `REVIEW`
-- Implementar `DELETE` ao clicar no lixeira no card.
-- Implementar um loading na tela ao realizar requisições.
-- Realizar a requisição automaticamente ao preencher um CPF válido completo
-- Atualizar os dados (refetch) ao clicar no icone de atualizar
-- Adicionar máscara de CPF no campo de pesquisa.
-
-### Pesquisa por CPF
-
-Para realizar a pesquisa por CPF, utilize essa funcionalidade do json-web-server:
-<br/>
-https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
-
-### Formulário
-
-- Implementar validação no campo de `email` para que aceite apenas emails válidos
-- Implementar validação no campo `nome completo` para que aceite pelo menos um espaço, no mínimo duas letras, e que a primeira letra não seja um número.
-- Implementar validação no campo CPF para aceitar apenas CPFs válidos e adicionar uma máscara de CPF ao campo.
-- Implementar `POST` ao preencher todos os campos corretamentes.
-- Redirecionar ao `/dashboard` ao criar uma nova registration.
-
-## Regras de negócio
-
-- Implementar tipagem correta e enums em TypeScript.
-- Todas as requisições devem ter modal de confirmação da ação
-- Todas as requisições devem aparecer uma notificação de sucesso ou erro
-- O botão de `Reprovar` e `Aprovar` só deve aparecer em registrations com status `REVIEW` 
-- O botão `Revisar novamente` só deve aparecer em registration com status `REPROVED` ou `APPROVED`
-
-## API
-Você consumirá uma API mockada localmente, que será executada utilizando o json-server. Para mais informações consulte a [documentação](https://github.com/typicode/json-server/).
-
-Exemplo de Requisição:
-
-```
-POST http://localhost:3000/registrations
-Content-Type: application/json
-{
-  "admissionDate": "23/10/2023",
-  "email": "maria@caju.com.br",
-  "employeeName": "Maria Silva",
-  "status": "REVIEW",
-  "cpf": "12345678901"
-}
+```bash
+git clone git@github.com:raqueltsato/admission-form.git
+cd admission-form
+yarn
 ```
 
+Rode o projeto.
 
-## Extras (opcional)
-
-- Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
-- End-to-End (E2E) 
-- Documentação detalhada utilizando Storybook e Docusaurus
-- Configuração de CI/CD com deploy automatizado
-
-## Dicas e sugestões
-
-- Crie custom hooks para separar a lógica da camada de UI
-- Utilize alguma lib de validação para o formulário
-- Crie testes que simulem o comportamento esperado do usuario
-
-### Sua performance será avaliada com base nos seguintes pontos:
-
-- A aplicação funciona conforme o esperado e tem uma estrutura lógica bem organizada
-- Se preocupou com a experiência do usuário
-- Os problemas foram resolvidos com eficiência
-- O código é de fácil leitura
-- Demonstra conhecimento de como testar as partes críticas da aplicação. Não exigimos 100% de cobertura
-
-## Desenvolvimento
-
-```shell
-git clone https://github.com/caju-beneficios/caju-front-teste-1.git
-cd caju-front-test-1
-yarn 
+```bash
 yarn dev
 ```
 
-Abra outro terminal e execute: 
-```shell
+Rode o server em outro terminal no mesmo diretório.
+
+```bash
 yarn init:db
 ```
 
-Para os testes
+Se tudo tiver dado certo as seguintes portas estarão disponiveis:
 
-```shell
+**Aplicação:** [http://localhost:3001/](http://localhost:3001/)
+
+**Json Web Server:** [http://localhost:3000/](http://localhost:3000/)
+
+Rode os testes.
+
+```bash
 yarn test:dev
 ```
-Se tude tiver dado certo as seguintes portas estarão disponiveis:
-<br/>
 
-Aplicação http://localhost:3001/
-<br/>
-Json Web Server http://localhost:3000/
+## Storybook
 
-``
-Para concluir o desenvolvimento, clone o repositório, faça as edições necessárias e depois envie a URL do novo repositório com suas alterações para o RH.
-``
+- Adição dos componentes para o storybook
+
+Rode o storybook.
+
+```bash
+yarn storybook
+```
+
+Se tudo tiver dado certo a seguinte porta estará disponível:
+[http://localhost:6006/ ](http://localhost:6006/)
+
+## Automação no GitHub Actions
+
+- Incremento automático de versão: Sempre que um novo código é mesclado em main, a versão do aplicativo é incrementada automaticamente.
+- Versionamento Semântico: As versões são determinadas com base nas labels aplicadas aos Pull Requests, seguindo as práticas de versionamento semântico (`major`, `minor`, `patch`).
+- Test Coverage em PRs: Ao abrir um pull request, o GitHub Actions executa testes e relata a cobertura de testes.
+
+## Tecnologias utilizadas
+
+- `React com Vite`
+- `TypeScript`
+- `React Query`
+- `React Hook Form` e `Zod`
+- `Context API`
+- `Styled-Components`
+- `Jest`
+- `React Testing Library`
