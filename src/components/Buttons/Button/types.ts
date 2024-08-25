@@ -1,5 +1,7 @@
+import { Status } from "~/core/api/types";
+
 export type Props = {
-  variant?: "primary" | "secondary" | "REVIEW" | "APPROVED" | "REPROVED";
+  variant?: "primary" | "secondary" | Status;
   size?: "sm" | "md";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 

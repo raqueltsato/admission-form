@@ -37,3 +37,9 @@ export const Default = Template.bind({});
 Default.args = {
   children: "Cadastrar",
 };
+
+export const Small = Template.bind({});
+Small.args = {
+  children: "Cadastrar",
+  size: "sm",
+};
