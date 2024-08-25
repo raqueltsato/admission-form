@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { Props } from "./types";
+import { ButtonStyleProps, Props } from "./types";
 
 const Button = ({
   size = "md",
@@ -9,7 +9,12 @@ const Button = ({
   ...rest
 }: Props) => {
   return (
-    <S.Button $size={size} $variant={variant} disabled={disabled} {...rest}>
+    <S.Button
+      $size={size}
+      $variant={variant.toLowerCase() as ButtonStyleProps["$variant"]}
+      disabled={disabled}
+      {...rest}
+    >
       {children}
     </S.Button>
   );

@@ -10,7 +10,6 @@ import Button from "~/components/Buttons/Button";
 import Modal from "~/components/Modal";
 import { Status } from "~/core/api/types";
 import { ChangeStatusProps, Props } from "./types";
-import theme from "~/theme";
 import { RegistrationContext } from "~/context/useRegistrationContext";
 
 const RegistrationCard = ({ registration }: Props) => {
@@ -99,7 +98,7 @@ const RegistrationCard = ({ registration }: Props) => {
             <>
               <Button
                 onClick={() => setCurrentStatus(Status.reproved)}
-                $bgColor={theme.colors.lightestRed}
+                variant={Status.reproved}
                 size="sm"
                 data-testid="reprove-button"
               >
@@ -107,7 +106,7 @@ const RegistrationCard = ({ registration }: Props) => {
               </Button>
               <Button
                 onClick={() => setCurrentStatus(Status.approved)}
-                $bgColor={theme.colors.lightestGreen}
+                variant={Status.approved}
                 size="sm"
                 data-testid="approve-button"
               >
@@ -118,7 +117,7 @@ const RegistrationCard = ({ registration }: Props) => {
           {showReviewButton && (
             <Button
               onClick={() => setCurrentStatus(Status.review)}
-              $bgColor={theme.colors.orange}
+              variant={Status.review}
               size="sm"
               data-testid="review-button"
             >

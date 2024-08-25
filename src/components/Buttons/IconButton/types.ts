@@ -1,3 +1,6 @@
+import { IconType } from "react-icons";
+
 export type Props = {
-  children?: React.ReactNode;
+  iconName: IconType;
+  size?: number;
 } & React.HTMLAttributes<HTMLButtonElement>;

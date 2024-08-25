@@ -28,9 +28,11 @@ export const SearchBar = () => {
         {isRefetching ? (
           <Loading />
         ) : (
-          <IconButton aria-label="refetch" onClick={refetch}>
-            <HiRefresh />
-          </IconButton>
+          <IconButton
+            aria-label="Atualizar dados"
+            onClick={refetch}
+            iconName={HiRefresh}
+          />
         )}
         <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
       </S.Actions>
