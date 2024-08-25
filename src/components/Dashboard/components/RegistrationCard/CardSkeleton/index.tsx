@@ -1,5 +1,6 @@
-import { Skeleton } from "~/Skeleton";
+import Skeleton from "~/components/Skeleton";
 import * as S from "./styles";
+
 const CardSkeleton = () => {
   return (
     <S.Wrapper>
