@@ -20,7 +20,7 @@ import { format } from "date-fns";
 
 const NewUserPage = () => {
   const {
-    actions: { createRegistrationHook, refetch },
+    actions: { createRegistrationHook },
   } = useContext(RegistrationContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,7 +65,6 @@ const NewUserPage = () => {
       cpf: removeCPFMask(data.cpf),
     };
     createRegistrationHook(params);
-    refetch();
     toggleModal();
     goToHome();
   };
