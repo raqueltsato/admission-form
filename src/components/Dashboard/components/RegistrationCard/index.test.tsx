@@ -90,8 +90,6 @@ describe("RegistrationCard", () => {
     );
     const approveButton = screen.getByTestId("approve-button");
 
-    console.log(registrationsMock[1]);
-
     fireEvent.click(approveButton);
 
     const modal = screen.getByTestId("modal-overlay");
