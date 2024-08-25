@@ -1,8 +1,12 @@
 import * as S from "./styles";
 import { Props } from "./types";
 
-const IconButton = (props: Props) => {
-  return <S.IconButtonStyled {...props}>{props.children}</S.IconButtonStyled>;
+const IconButton = ({ iconName: IconName, size, ...rest }: Props) => {
+  return (
+    <S.IconButtonStyled {...rest}>
+      <IconName size={size} />
+    </S.IconButtonStyled>
+  );
 };
 
 export default IconButton;

@@ -10,9 +10,11 @@ describe("IconButton", () => {
   it("Should show IconButton", () => {
     render(
       <ThemeProvider theme={theme}>
-        <IconButton onClick={onChangeEvent}>
-          <HiOutlineArrowLeft size={24} />
-        </IconButton>
+        <IconButton
+          onClick={onChangeEvent}
+          iconName={HiOutlineArrowLeft}
+          size={24}
+        />
       </ThemeProvider>
     );
     const buttonElement = screen.getByRole("button");

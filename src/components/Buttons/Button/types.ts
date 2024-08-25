@@ -1,6 +1,10 @@
 export type Props = {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "REVIEW" | "APPROVED" | "REPROVED";
   size?: "sm" | "md";
-  $bgColor?: string;
-  color?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+export type ButtonStyleProps = {
+  $variant?: "primary" | "secondary" | "review" | "approved" | "reproved";
+  disabled?: boolean;
+  $size: "sm" | "md";
+};
