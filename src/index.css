@@ -1,19 +1,19 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
  */
  @font-face {
-  font-family: 'Caju';
-  src: url('/src/assets/Faktum_bold.otf') format('otf'),
-  url('/src/assets/regular.otf') format('otf');
+  font-family: 'Faktum';
+  src: url('/src/assets/fonts/Faktum_bold.otf') format('otf'),
+  url('/src/assets/fonts/Faktum_regular.otf') format('otf');
   font-weight: normal;
   font-style: normal;
   ;
  }
 
 body {
-  font-family: "Caju", sans-serif;
+  font-family: "Faktum", sans-serif;
   margin: 0px;
 
   input[type="date"] {
-    font-family: "Caju", sans-serif;
+    font-family: "Faktum", sans-serif;
   }
 }
