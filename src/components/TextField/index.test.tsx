@@ -24,23 +24,23 @@ const Wrapper = ({ initialValue }: WrapperProps) => {
 
 describe("TextField", () => {
   it("Should show TextField with initial value", () => {
-    const { container } = render(<Wrapper initialValue="Luis" />);
+    const { container } = render(<Wrapper initialValue="João Silva" />);
 
     expect(within(container).getByText("Nome")).toBeDefined();
-    expect(container.children[0].children[1]).toHaveValue("Luis");
+    expect(container.children[1]).toHaveValue("João Silva");
   });
 
   it("Should change TextField value", () => {
-    render(<Wrapper initialValue="Luis" />);
+    render(<Wrapper initialValue="Mario Costa" />);
 
     let inputValue = screen.getByTestId("text-field");
 
-    expect(inputValue).toHaveValue("Luis");
+    expect(inputValue).toHaveValue("Mario Costa");
 
-    fireEvent.change(inputValue, { target: { value: "João" } });
+    fireEvent.change(inputValue, { target: { value: "João Silva" } });
 
     inputValue = screen.getByTestId("text-field");
 
-    expect(onChangeMock).toHaveBeenCalledWith("João");
+    expect(onChangeMock).toHaveBeenCalledWith("João Silva");
   });
 });

@@ -74,13 +74,15 @@ const NewUserPage = () => {
     <form>
       <S.Container>
         <S.Card>
-          <S.Title>Cadastro de funcionário</S.Title>
-          <IconButton
-            onClick={() => goToHome()}
-            aria-label="Voltar"
-            iconName={HiOutlineArrowLeft}
-            size={24}
-          />
+          <S.Header>
+            <IconButton
+              onClick={() => goToHome()}
+              aria-label="Voltar"
+              iconName={HiOutlineArrowLeft}
+              size={24}
+            />
+            <S.Title>Cadastro de funcionário</S.Title>
+          </S.Header>
           <S.InputWrapper>
             <Controller
               name="employeeName"

@@ -30,6 +30,7 @@ export const Container = styled.div`
 export const ColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 300px;
 `;
 
 export const ColumnTitleContainer = styled.div<{ status: StatusProps }>`

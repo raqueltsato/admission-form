@@ -15,6 +15,8 @@ export const Input = styled.input`
   transition: all 0.2s ease-in-out 0s;
   line-height: 18px;
   font-weight: normal;
+  box-sizing: border-box;
+
   :focus {
     outline: none;
     border: 1px solid #007c89;
