@@ -14,6 +14,7 @@ const Wrapper = () => {
       value={{
         values: {
           ...values,
+          isLoadingRegistrations: false,
           registrations: registrationsMock as (typeof values)["registrations"],
         },
         actions,

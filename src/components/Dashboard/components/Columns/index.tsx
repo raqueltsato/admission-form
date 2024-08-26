@@ -14,7 +14,7 @@ const allColumns = [
 
 const Collumns = () => {
   const {
-    values: { registrations, isRefetching },
+    values: { registrations, isRefetching, isLoadingRegistrations },
   } = useContext(RegistrationContext);
 
   const registrationsGroupByStatus = registrations.reduce(
@@ -32,7 +32,7 @@ const Collumns = () => {
   );
 
   const renderContent = (status: Status) => {
-    if (isRefetching) {
+    if (isRefetching || isLoadingRegistrations) {
       return (
         <>
           <CardSkeleton />
